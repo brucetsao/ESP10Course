@@ -1,0 +1,12 @@
+加頭的圖片
+把下面一列
+<div align="center"><img src="/fcu/images/titlelogo.jpg" width="1000" height="100%" /></div>
+加在<body>下方
+
+
+加尾部的圖片
+把下面一列
+加頭的圖片
+把下面一列
+<div align="center"><img src="/fcu/images/titlelogo.jpg" width="1000" height="100%" /></div>
+加在<body>下方加在</body>上方

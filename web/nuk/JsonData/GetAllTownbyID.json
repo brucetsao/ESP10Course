@@ -1,0 +1,58 @@
+{
+  "DataName": "Town",
+  "Amount": 13,
+  "Datalist": [
+    {
+      "TownID": "159",
+      "TownName": "中寮鄉"
+    },
+    {
+      "TownID": "122",
+      "TownName": "仁愛鄉"
+    },
+    {
+      "TownID": "175",
+      "TownName": "信義鄉"
+    },
+    {
+      "TownID": "160",
+      "TownName": "南投市"
+    },
+    {
+      "TownID": "173",
+      "TownName": "名間鄉"
+    },
+    {
+      "TownID": "139",
+      "TownName": "國姓鄉"
+    },
+    {
+      "TownID": "147",
+      "TownName": "埔里鎮"
+    },
+    {
+      "TownID": "168",
+      "TownName": "水里鄉"
+    },
+    {
+      "TownID": "178",
+      "TownName": "竹山鎮"
+    },
+    {
+      "TownID": "152",
+      "TownName": "草屯鎮"
+    },
+    {
+      "TownID": "176",
+      "TownName": "集集鎮"
+    },
+    {
+      "TownID": "164",
+      "TownName": "魚池鄉"
+    },
+    {
+      "TownID": "183",
+      "TownName": "鹿谷鄉"
+    }
+  ]
+}

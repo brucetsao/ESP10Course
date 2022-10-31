@@ -1,0 +1,10 @@
+select * from member as a left join diplomatype as b on a.diploma = b.id ;
+//更多请阅读：https://www.yiibai.com/mysql/left-join.html
+
+SELECT * FROM member as a  , diplomatype  as b  WHERE a.diploma = b.id
+
+create view membera as select a.*, b.degree, b.degreeename from member as a left join diplomatype as b on a.diploma = b.id ;
+
+
+ref doc:
+https://www.yiibai.com/mysql/left-join.html

@@ -1,0 +1,7 @@
+建立有文憑中文欄位的membera檢視表
+
+create view membera as select a.* , b.degree, b.degreeename from member as a , diplomatype as b where a.diploma = b.id;
+
+
+select * from member as a , diplomatype as b where a.diploma = b.id ;
+select * from member , diplomatype  where member.diploma = diplomatype.id ;

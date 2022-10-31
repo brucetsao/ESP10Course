@@ -1,0 +1,17 @@
+INSERT INTO `orders` (`id`, `orderdate`, `mid`, `rname`, `rphone`, `raddress`, `pay`, `state`, `total`, `tax`, `crtdatetime`) VALUES (NULL, '2022/8/1', '1', 'aaa', 'bbbb', 'cccccc', '01', '1', '200', '10', CURRENT_TIMESTAMP);
+
+SELECT `id` FROM `orders` WHERE 1 order by id desc limit 0,1;
+
+
+select id from fcu.orders where 1 order by id desc limit 0,1;
+
+insert into fcu.orders (id, orderdate, mid, rname, rphone, raddress, pay, state, total, tax) values (%d, '%s', %d, '%s', '%s', '%s', '%s', 1, %d, %d);
+
+
+INSERT INTO `orderlist` (`id`, `mid`, `sn`, `itemid`, `price`, `qty`, `subtotal`) VALUES (NULL, '1', '01', '1', '400', '5', '200');
+
+
+insert into fcu.orderlist ( mid, sn, itemid, price, qty, subtotal) values 
+(%s , '%s', %s, %s, %s, %s);
+
+insert into fcu.orderlist ( mid, sn, itemid, price, qty, subtotal) values (%s , '%s', %s, %s, %s, %s);

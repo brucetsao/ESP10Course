@@ -1,0 +1,12 @@
+<table width="100%" border="1">
+  <tr>
+    <td>22</td>
+    <td>33</td>
+    <td>44</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>

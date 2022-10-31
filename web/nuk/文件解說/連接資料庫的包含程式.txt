@@ -1,0 +1,6 @@
+include("../Connections/iotcnn.php");		//使用資料庫的呼叫程式
+//	Connection() ;
+  //建立資料連接
+$link=Connection();		//產生mySQL連線物件
+
+  

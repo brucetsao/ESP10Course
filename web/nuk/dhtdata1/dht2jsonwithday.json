@@ -1,0 +1,680 @@
+{
+  "Device": "CC50E3B5BB20",
+  "Datalist": [
+    {
+      "Datetime": "20210619",
+      "Temperature": 34.705,
+      "Humidity": 54.067
+    },
+    {
+      "Datetime": "20210620",
+      "Temperature": 33.952,
+      "Humidity": 56.717
+    },
+    {
+      "Datetime": "20210621",
+      "Temperature": 33.658,
+      "Humidity": 57.587
+    },
+    {
+      "Datetime": "20210622",
+      "Temperature": 31.675,
+      "Humidity": 66.633
+    },
+    {
+      "Datetime": "20210623",
+      "Temperature": 29.784,
+      "Humidity": 68.641
+    },
+    {
+      "Datetime": "20210624",
+      "Temperature": 29.565,
+      "Humidity": 68.377
+    },
+    {
+      "Datetime": "20210625",
+      "Temperature": 28.828,
+      "Humidity": 74.481
+    },
+    {
+      "Datetime": "20210626",
+      "Temperature": 29.772,
+      "Humidity": 70.973
+    },
+    {
+      "Datetime": "20210627",
+      "Temperature": 31.048,
+      "Humidity": 65.877
+    },
+    {
+      "Datetime": "20210628",
+      "Temperature": 31.337,
+      "Humidity": 64.988
+    },
+    {
+      "Datetime": "20210630",
+      "Temperature": 33.109,
+      "Humidity": 62.117
+    },
+    {
+      "Datetime": "20210701",
+      "Temperature": 32.622,
+      "Humidity": 60.59
+    },
+    {
+      "Datetime": "20210703",
+      "Temperature": 33.353,
+      "Humidity": 63.427
+    },
+    {
+      "Datetime": "20210704",
+      "Temperature": 32.574,
+      "Humidity": 64.803
+    },
+    {
+      "Datetime": "20210705",
+      "Temperature": 32.606,
+      "Humidity": 60.393
+    },
+    {
+      "Datetime": "20210708",
+      "Temperature": 31.03,
+      "Humidity": 69.404
+    },
+    {
+      "Datetime": "20210709",
+      "Temperature": 32.052,
+      "Humidity": 64.227
+    },
+    {
+      "Datetime": "20210710",
+      "Temperature": 30.263,
+      "Humidity": 73.165
+    },
+    {
+      "Datetime": "20210711",
+      "Temperature": 30.003,
+      "Humidity": 71.244
+    },
+    {
+      "Datetime": "20210712",
+      "Temperature": 29.927,
+      "Humidity": 76.676
+    },
+    {
+      "Datetime": "20210713",
+      "Temperature": 29.241,
+      "Humidity": 79.422
+    },
+    {
+      "Datetime": "20210714",
+      "Temperature": 30.125,
+      "Humidity": 71.361
+    },
+    {
+      "Datetime": "20210715",
+      "Temperature": 31.232,
+      "Humidity": 61.906
+    },
+    {
+      "Datetime": "20210716",
+      "Temperature": 31.51,
+      "Humidity": 60.684
+    },
+    {
+      "Datetime": "20210717",
+      "Temperature": 31.159,
+      "Humidity": 61.536
+    },
+    {
+      "Datetime": "20210718",
+      "Temperature": 30.903,
+      "Humidity": 62.372
+    },
+    {
+      "Datetime": "20210719",
+      "Temperature": 31.732,
+      "Humidity": 62.073
+    },
+    {
+      "Datetime": "20210720",
+      "Temperature": 30.355,
+      "Humidity": 70.501
+    },
+    {
+      "Datetime": "20210721",
+      "Temperature": 27.995,
+      "Humidity": 83.124
+    },
+    {
+      "Datetime": "20210722",
+      "Temperature": 27.729,
+      "Humidity": 91.849
+    },
+    {
+      "Datetime": "20210723",
+      "Temperature": 27.556,
+      "Humidity": 91.946
+    },
+    {
+      "Datetime": "20210724",
+      "Temperature": 26.559,
+      "Humidity": 95.464
+    },
+    {
+      "Datetime": "20210726",
+      "Temperature": 29.552,
+      "Humidity": 76.971
+    },
+    {
+      "Datetime": "20210727",
+      "Temperature": 31.049,
+      "Humidity": 69.746
+    },
+    {
+      "Datetime": "20210728",
+      "Temperature": 30.359,
+      "Humidity": 77.265
+    },
+    {
+      "Datetime": "20210729",
+      "Temperature": 29.338,
+      "Humidity": 80.712
+    },
+    {
+      "Datetime": "20210730",
+      "Temperature": 29.328,
+      "Humidity": 78.085
+    },
+    {
+      "Datetime": "20210731",
+      "Temperature": 27.58,
+      "Humidity": 85.479
+    },
+    {
+      "Datetime": "20210801",
+      "Temperature": 28.374,
+      "Humidity": 82.422
+    },
+    {
+      "Datetime": "20210802",
+      "Temperature": 27.697,
+      "Humidity": 85.286
+    },
+    {
+      "Datetime": "20210803",
+      "Temperature": 26.657,
+      "Humidity": 90.505
+    },
+    {
+      "Datetime": "20210804",
+      "Temperature": 27.8,
+      "Humidity": 86.244
+    },
+    {
+      "Datetime": "20210805",
+      "Temperature": 27.909,
+      "Humidity": 83.615
+    },
+    {
+      "Datetime": "20210806",
+      "Temperature": 26.406,
+      "Humidity": 90.821
+    },
+    {
+      "Datetime": "20210807",
+      "Temperature": 24.827,
+      "Humidity": 96.612
+    },
+    {
+      "Datetime": "20210808",
+      "Temperature": 29.409,
+      "Humidity": 78.006
+    },
+    {
+      "Datetime": "20210809",
+      "Temperature": 29.015,
+      "Humidity": 79.525
+    },
+    {
+      "Datetime": "20210810",
+      "Temperature": 28.705,
+      "Humidity": 77.862
+    },
+    {
+      "Datetime": "20210811",
+      "Temperature": 28.294,
+      "Humidity": 81.141
+    },
+    {
+      "Datetime": "20210812",
+      "Temperature": 28.646,
+      "Humidity": 80.181
+    },
+    {
+      "Datetime": "20210813",
+      "Temperature": 27.899,
+      "Humidity": 83.82
+    },
+    {
+      "Datetime": "20210814",
+      "Temperature": 28.32,
+      "Humidity": 82.188
+    },
+    {
+      "Datetime": "20210815",
+      "Temperature": 29.245,
+      "Humidity": 77.455
+    },
+    {
+      "Datetime": "20210816",
+      "Temperature": 29.251,
+      "Humidity": 79.097
+    },
+    {
+      "Datetime": "20210817",
+      "Temperature": 26.663,
+      "Humidity": 89.652
+    },
+    {
+      "Datetime": "20210827",
+      "Temperature": 30.565,
+      "Humidity": 69.01
+    },
+    {
+      "Datetime": "20210828",
+      "Temperature": 30.582,
+      "Humidity": 69.118
+    },
+    {
+      "Datetime": "20210829",
+      "Temperature": 31.128,
+      "Humidity": 65.913
+    },
+    {
+      "Datetime": "20210830",
+      "Temperature": 31.085,
+      "Humidity": 66.626
+    },
+    {
+      "Datetime": "20210831",
+      "Temperature": 30.749,
+      "Humidity": 68.951
+    },
+    {
+      "Datetime": "20210901",
+      "Temperature": 30.96,
+      "Humidity": 68.376
+    },
+    {
+      "Datetime": "20210902",
+      "Temperature": 28.487,
+      "Humidity": 80.103
+    },
+    {
+      "Datetime": "20210903",
+      "Temperature": 28.967,
+      "Humidity": 76.24
+    },
+    {
+      "Datetime": "20210904",
+      "Temperature": 28.094,
+      "Humidity": 80.824
+    },
+    {
+      "Datetime": "20210906",
+      "Temperature": 29.936,
+      "Humidity": 76.494
+    },
+    {
+      "Datetime": "20210907",
+      "Temperature": 30.959,
+      "Humidity": 69.212
+    },
+    {
+      "Datetime": "20210908",
+      "Temperature": 30.473,
+      "Humidity": 69.101
+    },
+    {
+      "Datetime": "20210909",
+      "Temperature": 30.81,
+      "Humidity": 62.906
+    },
+    {
+      "Datetime": "20210910",
+      "Temperature": 31.281,
+      "Humidity": 66.405
+    },
+    {
+      "Datetime": "20210911",
+      "Temperature": 29.384,
+      "Humidity": 75.915
+    },
+    {
+      "Datetime": "20210912",
+      "Temperature": 26.119,
+      "Humidity": 90.686
+    },
+    {
+      "Datetime": "20210913",
+      "Temperature": 30.33,
+      "Humidity": 71.087
+    },
+    {
+      "Datetime": "20210914",
+      "Temperature": 30.241,
+      "Humidity": 76.862
+    },
+    {
+      "Datetime": "20210915",
+      "Temperature": 29.193,
+      "Humidity": 79.715
+    },
+    {
+      "Datetime": "20210916",
+      "Temperature": 28.435,
+      "Humidity": 79.133
+    },
+    {
+      "Datetime": "20210917",
+      "Temperature": 28.191,
+      "Humidity": 81.71
+    },
+    {
+      "Datetime": "20210918",
+      "Temperature": 28.977,
+      "Humidity": 79.245
+    },
+    {
+      "Datetime": "20210919",
+      "Temperature": 30.268,
+      "Humidity": 73.72
+    },
+    {
+      "Datetime": "20210920",
+      "Temperature": 30.137,
+      "Humidity": 73.444
+    },
+    {
+      "Datetime": "20210921",
+      "Temperature": 29.187,
+      "Humidity": 75.387
+    },
+    {
+      "Datetime": "20210922",
+      "Temperature": 29.253,
+      "Humidity": 73.813
+    },
+    {
+      "Datetime": "20210923",
+      "Temperature": 29.934,
+      "Humidity": 70.95
+    },
+    {
+      "Datetime": "20210924",
+      "Temperature": 29.32,
+      "Humidity": 73.675
+    },
+    {
+      "Datetime": "20210925",
+      "Temperature": 28.301,
+      "Humidity": 72.819
+    },
+    {
+      "Datetime": "20210926",
+      "Temperature": 28.128,
+      "Humidity": 75.76
+    },
+    {
+      "Datetime": "20210927",
+      "Temperature": 28.422,
+      "Humidity": 76.292
+    },
+    {
+      "Datetime": "20210928",
+      "Temperature": 27.497,
+      "Humidity": 74.209
+    },
+    {
+      "Datetime": "20210929",
+      "Temperature": 27.735,
+      "Humidity": 71.496
+    },
+    {
+      "Datetime": "20210930",
+      "Temperature": 28.19,
+      "Humidity": 72.64
+    },
+    {
+      "Datetime": "20211001",
+      "Temperature": 27.726,
+      "Humidity": 79.151
+    },
+    {
+      "Datetime": "20211002",
+      "Temperature": 27.915,
+      "Humidity": 75.037
+    },
+    {
+      "Datetime": "20211003",
+      "Temperature": 29.179,
+      "Humidity": 63.594
+    },
+    {
+      "Datetime": "20211004",
+      "Temperature": 30.091,
+      "Humidity": 64.651
+    },
+    {
+      "Datetime": "20211005",
+      "Temperature": 29.253,
+      "Humidity": 64.947
+    },
+    {
+      "Datetime": "20211006",
+      "Temperature": 29.33,
+      "Humidity": 68.96
+    },
+    {
+      "Datetime": "20211007",
+      "Temperature": 29.987,
+      "Humidity": 65.569
+    },
+    {
+      "Datetime": "20211008",
+      "Temperature": 29.698,
+      "Humidity": 66.817
+    },
+    {
+      "Datetime": "20211009",
+      "Temperature": 29.201,
+      "Humidity": 69.216
+    },
+    {
+      "Datetime": "20211010",
+      "Temperature": 29.197,
+      "Humidity": 69.901
+    },
+    {
+      "Datetime": "20211011",
+      "Temperature": 26.284,
+      "Humidity": 90.915
+    },
+    {
+      "Datetime": "20211012",
+      "Temperature": 27.579,
+      "Humidity": 84.723
+    },
+    {
+      "Datetime": "20211013",
+      "Temperature": 27.196,
+      "Humidity": 84.356
+    },
+    {
+      "Datetime": "20211014",
+      "Temperature": 27.788,
+      "Humidity": 76.741
+    },
+    {
+      "Datetime": "20211015",
+      "Temperature": 28.403,
+      "Humidity": 67.887
+    },
+    {
+      "Datetime": "20211016",
+      "Temperature": 27.395,
+      "Humidity": 73.217
+    },
+    {
+      "Datetime": "20211017",
+      "Temperature": 21.771,
+      "Humidity": 77.916
+    },
+    {
+      "Datetime": "20211018",
+      "Temperature": 22.085,
+      "Humidity": 78.372
+    },
+    {
+      "Datetime": "20211019",
+      "Temperature": 23.323,
+      "Humidity": 76.465
+    },
+    {
+      "Datetime": "20211020",
+      "Temperature": 23.959,
+      "Humidity": 81.323
+    },
+    {
+      "Datetime": "20211021",
+      "Temperature": 22.071,
+      "Humidity": 89.707
+    },
+    {
+      "Datetime": "20211022",
+      "Temperature": 19.483,
+      "Humidity": 92.98
+    },
+    {
+      "Datetime": "20211023",
+      "Temperature": 19.62,
+      "Humidity": 90.364
+    },
+    {
+      "Datetime": "20211024",
+      "Temperature": 20.089,
+      "Humidity": 96.042
+    },
+    {
+      "Datetime": "20211025",
+      "Temperature": 20.999,
+      "Humidity": 93.768
+    },
+    {
+      "Datetime": "20211026",
+      "Temperature": 23.3,
+      "Humidity": 79.739
+    },
+    {
+      "Datetime": "20211027",
+      "Temperature": 24.549,
+      "Humidity": 70.041
+    },
+    {
+      "Datetime": "20211108",
+      "Temperature": 17.021,
+      "Humidity": 77.8
+    },
+    {
+      "Datetime": "20211109",
+      "Temperature": 16.79,
+      "Humidity": 68.401
+    },
+    {
+      "Datetime": "20211203",
+      "Temperature": 14.107,
+      "Humidity": 66.917
+    },
+    {
+      "Datetime": "20211204",
+      "Temperature": 16.353,
+      "Humidity": 65.601
+    },
+    {
+      "Datetime": "20211205",
+      "Temperature": 18.107,
+      "Humidity": 82.8
+    },
+    {
+      "Datetime": "20211206",
+      "Temperature": 18.384,
+      "Humidity": 88.699
+    },
+    {
+      "Datetime": "20211207",
+      "Temperature": 17.882,
+      "Humidity": 85.852
+    },
+    {
+      "Datetime": "20211208",
+      "Temperature": 21.258,
+      "Humidity": 57.583
+    },
+    {
+      "Datetime": "20211210",
+      "Temperature": 22.551,
+      "Humidity": 69.002
+    },
+    {
+      "Datetime": "20211213",
+      "Temperature": 17.555,
+      "Humidity": 86.706
+    },
+    {
+      "Datetime": "20211214",
+      "Temperature": 20.527,
+      "Humidity": 77.287
+    },
+    {
+      "Datetime": "20211215",
+      "Temperature": 22.185,
+      "Humidity": 73.971
+    },
+    {
+      "Datetime": "20211216",
+      "Temperature": 21.697,
+      "Humidity": 79.031
+    },
+    {
+      "Datetime": "20211217",
+      "Temperature": 17.942,
+      "Humidity": 79.447
+    },
+    {
+      "Datetime": "20211218",
+      "Temperature": 14.824,
+      "Humidity": 73.197
+    },
+    {
+      "Datetime": "20211219",
+      "Temperature": 16.799,
+      "Humidity": 65.759
+    },
+    {
+      "Datetime": "20211220",
+      "Temperature": 19.293,
+      "Humidity": 73.859
+    },
+    {
+      "Datetime": "20211221",
+      "Temperature": 18.299,
+      "Humidity": 93.025
+    },
+    {
+      "Datetime": "20211222",
+      "Temperature": 17.47,
+      "Humidity": 95.117
+    }
+  ]
+}

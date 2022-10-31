@@ -1,0 +1,5 @@
+CREATE  VIEW Vember  AS SELECT a.id AS id, a.username AS username, a.name AS name, a.sex AS sex, a.diploma AS diploma, b.degree AS degree, b.degreeename AS degreeename  FROM member as a left join diplomatype b on a.diploma = b.id   ;
+
+
+
+CREATE  VIEW Vembera  AS SELECT `a`.`id` AS `id`, `a`.`username` AS `username`, `a`.`name` AS `name`, `a`.`sex` AS `sex`, `a`.`diploma` AS `diploma`, `b`.`degree` AS `degree`, `b`.`degreeename` AS `degreeename` FROM (`member` `a` left join `diplomatype` `b` on((`a`.`diploma` = `b`.`id`)))  ;

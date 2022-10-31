@@ -1,0 +1,9 @@
+<?php
+echo '<script type="text/JavaScript"> location.reload(); </script>';	
+?>
+
+
+
+<script type=”text/javascript”>
+setInterval(‘location.reload()’, 3000);
+</script>

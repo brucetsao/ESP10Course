@@ -1,0 +1,7 @@
+bbbbb
+
+<?php 
+
+	echo phpinfo() ;
+
+?>

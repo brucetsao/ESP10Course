@@ -1,0 +1,27 @@
+CREATE VIEW VuserLogJob as SELECT a.id as id, a.userid as userid, b.account as account, b.name as username, b.password as password, b.sex as sex, b.birthday as birthday, b.telephone as telephone, b.cellphone as cellphone, b.address as address, b.email as email, b.url as url, b.comment as comment, a.type as logtypeid, c.typename as logtypename, a.logindatetime as logindatetime, a.fromip as ip, a.op as job FROM fcu.userlog as a, fcu.users as b , fcu.logtype as c where a.userid = b.id and a.type = c.typeid;
+
+
+CREATE VIEW VuserLogJob as SELECT a.id as id, a.userid as userid, b.account as account, b.name as username, b.password as password, b.sex as sex, b.birthday as birthday, b.telephone as telephone, b.cellphone as cellphone, b.address as address, b.email as email, b.url as url, b.comment as comment, a.type as logtypeid, c.typename as logtypename, a.logindatetime as logindatetime, a.fromip as ip, a.op as job FROM fcu.userlog as a left join fcu.users as b on a.userid = b.id , logtype as c where a.type = c.typeid;
+upper is ok
+
+
+
+
+
+SELECT a.id as id, a.userid as userid, b.account as account, b.name as username, b.password as password, b.sex as sex, b.birthday as birthday, b.telephone as telephone, b.cellphone as cellphone, b.address as address, b.email as email, b.url as url, b.comment as comment, a.type as logtypeid, c.typename as logtypename, a.logindatetime as logindatetime, a.fromip as ip, a.op as job FROM fcu.userlog as a, left join users as b on a.userid = b.id 
+
+SELECT *  FROM fcu.userlog as a , logtype as c  left join users as b on a.userid = b.id and left join users as b on a.userid = b.id where a.type = c.typeid 
+
+
+SELECT *  FROM fcu.userlog as a ,  fcu.logtype as b  left join  fcu.users as c on a.userid = c.id  where a.type = b.typeid 
+
+SELECT *  FROM fcu.userlog as a  left join  fcu.users as c on a.userid = c.id  where a.type = b.typeid 
+
+
+SELECT a.id as id, a.userid as userid, b.account as account, b.name as username, b.password as password, b.sex as sex, b.birthday as birthday, b.telephone as telephone, b.cellphone as cellphone, b.address as address, b.email as email, b.url as url, b.comment as comment, a.type as logtypeid, c.typename as logtypename, a.logindatetime as logindatetime, a.fromip as ip, a.op as job  FROM fcu.userlog as a left join fcu.users as c on a.userid = c.id , logtype as b where a.type = b.typeid;
+
+
+CREATE VIEW VuserLogJob as SELECT a.id as id, a.userid as userid, b.account as account, b.name as username, b.password as password, b.sex as sex, b.birthday as birthday, b.telephone as telephone, b.cellphone as cellphone, b.address as address, b.email as email, b.url as url, b.comment as comment, a.type as logtypeid, c.typename as logtypename, a.logindatetime as logindatetime, a.fromip as ip, a.op as job  FROM fcu.userlog as a left join fcu.users as c on a.userid = c.id , logtype as b where a.type = b.typeid;
+
+
+SELECT a.id as id, a.userid as userid, b.account as account, b.name as username, b.password as password, b.sex as sex, b.birthday as birthday, b.telephone as telephone, b.cellphone as cellphone, b.address as address, b.email as email, b.url as url, b.comment as comment, a.type as logtypeid, c.typename as logtypename, a.logindatetime as logindatetime, a.fromip as ip, a.op as job  FROM fcu.userlog as a left join fcu.users as b on a.userid = b.id , logtype as c where a.type = c.typeid;
