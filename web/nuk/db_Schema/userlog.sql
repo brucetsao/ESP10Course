@@ -35,7 +35,7 @@ CREATE TABLE `userlog` (
   `fromip` char(16) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL COMMENT '使用者來源IP',
   `op` char(200) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci NOT NULL COMMENT '使用者動作內容',
   `crtdatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '自動帶入時間戳記'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- 已傾印資料表的索引

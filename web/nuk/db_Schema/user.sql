@@ -34,7 +34,7 @@ CREATE TABLE `user` (
   `pwd` char(120) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci NOT NULL COMMENT '密碼',
   `email` char(200) CHARACTER SET ascii COLLATE ascii_general_ci DEFAULT NULL COMMENT '電子郵件',
   `crtdatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '資料創立時間'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- 傾印資料表的資料 `user`

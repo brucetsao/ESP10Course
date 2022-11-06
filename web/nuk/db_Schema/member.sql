@@ -33,7 +33,7 @@ CREATE TABLE `member` (
   `name` char(25) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci NOT NULL COMMENT '名字',
   `sex` tinyint NOT NULL COMMENT '性別',
   `diploma` char(2) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL COMMENT '學歷'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4  ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8  ;
 
 --
 -- 傾印資料表的資料 `member`

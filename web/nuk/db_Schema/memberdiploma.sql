@@ -31,14 +31,14 @@ CREATE TABLE `memberdiploma` (
   `id` int NOT NULL COMMENT '主鍵',
   `memberid` int NOT NULL COMMENT '會員編號',
   `diplomatype` char(2) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL COMMENT '學歷種類',
-  `name` char(200) CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci NOT NULL COMMENT '學校名稱',
+  `name` char(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT '學校名稱',
   `graduated` int NOT NULL DEFAULT '1' COMMENT '是否畢業',
   `national` int NOT NULL DEFAULT '1' COMMENT '國立/私立',
   `global` int NOT NULL DEFAULT '0' COMMENT '是否為國外學歷',
   `strdate` char(6) NOT NULL COMMENT '開始年月',
   `strend` char(6) NOT NULL COMMENT '結束年月',
   `crtdatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '資料創立時間'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- 已傾印資料表的索引

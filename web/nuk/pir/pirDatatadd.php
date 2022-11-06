@@ -12,7 +12,7 @@
 	$sysdt = getdataorder() ;
 //	$ddt = getdataorder() ;
 	
-	//http://localhost:8888/nuk/dhtdata/dhDatatadd.php?MAC=AABBCCDDEEFF&T=34&H=34
+	//http://localhost:8888/dhtdata/dhDatatadd.php?MAC=AABBCCDDEEFF&T=34&H=34
 	// 主機：http://localhost:8888/
 	//Http GET程式：dhtdata/dhDatatadd.php
 	//傳遞的參數：MAC=AABBCCDDEEFF&T=34&H=34
