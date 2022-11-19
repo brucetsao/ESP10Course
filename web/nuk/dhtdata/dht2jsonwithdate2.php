@@ -4,6 +4,16 @@
 //include("../comlib.php");		//使用資料庫的呼叫程式
 include("../Connections/iotcnn.php");		//使用資料庫的呼叫程式
 $link=Connection();		//產生mySQL連線物件
+ class maindata{
+	 public $Device ; 
+	 public $Datalist ; 
+  }
+  class subdata{
+	 public $Datetime  ; 
+	 public $Temperature ; 
+	 public $Humidity ; 
+  }
+
 /*
 {
 	"Device":"E89F6DE8F3BC",
@@ -32,34 +42,27 @@ $result= mysqli_query($link ,$qrystr );		//找出多少筆
 $cnt= 1 ;
 $count = mysqli_num_rows($result) ;
 //echo $count."<br>";
+ if ($count >0)
+ {
+	 $dd = array() ;
+ while($row = mysqli_fetch_array($result)) 
+	 {
+ $subdata = new subdata() ;
+ $subdata->Datetime = $row["systime"] ;
+ $subdata->Temperature = $row["temperature"]  ;
+ $subdata->Humidity =  $row["humidity"] ;
+		//將上面一筆的資料集json資料，加到陣列$dd	
+		 array_push($dd , $subdata) ;
 
-if ($count >0)
-{
-	$t1="" ;
+	 }
+	 //echo "<br>=======================================<br><br>";
+$maindata->Device = $sid ;
+$maindata->Datalist = $dd;	
+	 //$user = utf8_encode($user) ;
+	 echo json_encode($maindata, JSON_UNESCAPED_UNICODE);
+ }
+ 
 
-while($row = mysqli_fetch_array($result)) 
-	{
-//$jsonrow = "{\"stockno\":\"%s\",\"companyname\":\"%s\"}" ;
-
-		$tmp1 = sprintf($jsonrow,$row['systime'],$row['temperature'],$row['humidity'])  ;	
-
-	//	echo $tmp."<br>";
-		
-		$t1 = $t1.$tmp1;
-
-		if ($cnt < $count)
-		{
-			$t1 = $t1."," ;
-
-		}
-		$cnt=$cnt+1 ;
-		//echo "-----".$cnt."<br>" ;
-		//echo $t1."<br>";
-	}		//end of while($row = mysql_fetch_array($result)) 
-	//echo "<br>=======================================<br><br>";
-	$tmpp = sprintf($jsonarray,$sid,$t1) ;
-	echo $tmpp ;
-}
 
  mysqli_free_result($result);	// 關閉資料集
 
