@@ -1,5 +1,5 @@
 <?php     
-   //http://nuk.arduino.org.tw:8888/dhtdata/dht2jsonwithdaylist.php?MAC=E89F6DE8F3BC&start=20200101&end=20221231
+   //http://ncnu.arduino.org.tw:9999/dhtdata/dht2jsonwithdaylist.php?MAC=CC50E3B5BB20&start=20220101&end=20221231  
   
     //include("../comlib.php");		//使用資料庫的呼叫程式
    	include("../Connections/iotcnn.php");		//使用資料庫的呼叫程式
@@ -24,40 +24,40 @@
 	$sid=$_GET["MAC"];		//取得POST參數 : field1
 	$s1=$_GET["start"];		//取得POST參數 : field1
 	$s2=$_GET["end"];		//取得POST參數 : field1
-	//select * FROM.dhtData where mac = 'CC50E3B5BB20' and systime >= "20210101" and systime <= "20211231" order by systime asc 
-	//select * FROM.dhtData where mac = 'CC50E3B5BB20' and systime >= "20210101" and systime <= "20211231" group by left(systime,8) order by systime asc
-	//select MAC,left(systime,8) as day, average(temperature) as temp, average(humidity) as humid   FROM dhtData where mac = 'CC50E3B5BB20' and systime >= "20210101" and systime <= "20211231" group by left(systime,8) order by systime asc
-	//select MAC,left(systime,8) as day FROM dhtData where mac = 'CC50E3B5BB20' and systime >= '20210101' and systime <= '20211231' group by left(systime,8) order by systime asc;	
-	//select MAC,left(systime,8) as day FROM dhtData where mac = '%s' and systime >= '%s' and systime <= '%s' group by left(systime,8) order by systime asc;
+	//select * FROM ncnuiot.dhtData where mac = 'CC50E3B5BB20' and systime >= "20210101" and systime <= "20211231" order by systime asc 
+	//select * FROM ncnuiot.dhtData where mac = 'CC50E3B5BB20' and systime >= "20210101" and systime <= "20211231" group by left(systime,8) order by systime asc
+	//select MAC,left(systime,8) as day, average(temperature) as temp, average(humidity) as humid   FROM ncnuiot.dhtData where mac = 'CC50E3B5BB20' and systime >= "20210101" and systime <= "20211231" group by left(systime,8) order by systime asc
+	//select MAC,left(systime,8) as day FROM ncnuiot.dhtData where mac = 'CC50E3B5BB20' and systime >= '20210101' and systime <= '20211231' group by left(systime,8) order by systime asc;	
+	//select MAC,left(systime,8) as day FROM ncnuiot.dhtData where mac = '%s' and systime >= '%s' and systime <= '%s' group by left(systime,8) order by systime asc;
 	//-----------------
-	//select * FROM dhtData where mac = 'CC50E3B5BB20' and left(systime,8) = "20210619" order by systime asc;
-	$qry1 = "select MAC,left(systime,8) as day, avg(temperature) as temp, avg(humidity) as humid FROM nukiot.dhtData where mac = '%s' and systime >= '%s' and systime <= '%s' group by left(systime,8) order by systime asc" ;		//將dhtdata的資料找出來
-	$qry2 = "select * FROM nukiot.dhtData where mac = '%s' and left(systime,8) = '%s' order by systime asc;" ;		//將dhtdata的資料找出來
+	//select * FROM ncnuiot.dhtData where mac = 'CC50E3B5BB20' and left(systime,8) = "20210619" order by systime asc;
+	$qry1 = "select MAC,left(systime,8) as day, avg(temperature) as temp, avg(humidity) as humid FROM ncnuiot.dhtData where mac = '%s' and systime >= '%s' and systime <= '%s' group by left(systime,8) order by systime asc" ;		//將dhtdata的資料找出來
+	$qry2 = "select * FROM ncnuiot.dhtData where mac = '%s' and left(systime,8) = '%s' order by systime asc;" ;		//將dhtdata的資料找出來
 	$qrystr = sprintf($qry1 , $sid, $s1, $s2) ;		//將dhtdata的資料找出來
 	
 	//echo $qrystr."<br>" ;
 
-	$result= mysqli_query($link ,$qrystr);		//找出多少筆
+	$result= mysql_query($qrystr,$link);		//找出多少筆
 	$cnt= 1 ;
-	$count = mysqli_num_rows($result) ;
+	$count = mysql_num_rows($result) ;
 	//echo $count."<br>";
 
 	if ($count >0)
 	{
 		$t1="" ;
 
-	while($row = mysqli_fetch_array($result)) 
+	while($row = mysql_fetch_array($result)) 
 		{
 	
 			
 			$qrystr2 = sprintf($qry2 , $row['MAC'], $row['day']) ;		//將dhtdata的資料找出來
-			$result2= mysqli_query($link , $qrystr2);		//找出多少筆
+			$result2= mysql_query($qrystr2,$link);		//找出多少筆
 			$cnt2= 1 ;
-			$count2 = mysqli_num_rows($result2) ;
+			$count2 = mysql_num_rows($result2) ;
 			$t2="" ;
 			$t3="" ;
 			//echo "1-----".$qrystr2."<br>";
-			while($row2 = mysqli_fetch_array($result2)) 
+			while($row2 = mysql_fetch_array($result2)) 
 			{
 			//------------------
 			$tmp2 = sprintf($jsonrow2,$row2['temperature'])  ;	
@@ -97,9 +97,9 @@
 		echo $tmpp ;
 	}
 	
-	 mysqli_free_result($result);	// 關閉資料集
+	 mysql_free_result($result);	// 關閉資料集
  
-	 mysqli_close($link);		// 關閉連線
+	 mysql_close($link);		// 關閉連線
 
 
     ?>

@@ -1,10 +1,5 @@
 #include "initPins.h" //自訂系統腳位函式庫
 
-
-
-
-
-
 void setup()
 {
     initAll() ; //系統設定
@@ -12,13 +7,9 @@ void setup()
      ShowInternet() ; //秀出網路連線資訊
 }
 
-
-
 void loop()
 {
     delay(50);
-
-
     Serial.print("connecting to ");  //通訊埠印出 "connecting to"
     Serial.println(host);    //通訊埠印出 "想要連線的主機：用host變數儲存 "
 
@@ -32,7 +23,6 @@ void loop()
         Serial.println("connection failed");
         return;
     }
-
     // We now create a URI for the request
     String url = "/input/";
     url += streamId;
@@ -40,11 +30,8 @@ void loop()
     url += privateKey;
     url += "&value=";
     url += value;
-
     Serial.print("Requesting URL: ");
     Serial.println(url);
-
-
     // This will send the request to the server
     client.print(String("GET ") + url + " HTTP/1.1\r\n" +
                  "Host: " + host + "\r\n" +

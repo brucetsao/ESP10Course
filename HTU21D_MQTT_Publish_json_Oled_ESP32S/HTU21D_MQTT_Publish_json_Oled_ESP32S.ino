@@ -1,5 +1,6 @@
 #include <String.h>   //String 使用必備函示庫
 #include "initPins.h"
+#include "OledLib.h"  // Oled LCD 12832
 #include "HTU21DLib.h"  //HTU21D 溫濕度感測模組 使用必備函示庫
 #include "MQTT.h" // MQTT Broker自訂模組
 #include "JSONLIB.h"   //arduino json 使用必備函示庫
@@ -56,6 +57,10 @@ void loop()
           Serial.print(arraycount) ;
           Serial.print(")\n") ;
           onesensor = ReadSensor(onesensor)  ; //讀取溫溼度
+          _clearOled(); //清除螢幕
+          printTemperatureonOled(onesensor.Temperature) ;  //列印溫度到Oled 12832顯示模組
+          printHumidityonOled(onesensor.Humidity) ;   //列印濕度到Oled 12832顯示模組
+          _updateBuffer();    //更新圖型記憶體內容到畫面
          // AppendSensorData(onesensor,sensordata[arraycount]) ;
           appendjsondata(onesensor,&Temp[0],&Humid[0],arraycount) ;
           arraycount++ ;
@@ -82,4 +87,5 @@ void initAll()     //系統初始化
      initHTU21D();   //啟動HTU21D 溫溼度感測器
      fillCID(MacData) ;
      fillTopic(MacData) ;
+      initOLED();   //啟動OLED 12832顯示模組
 }

@@ -1,6 +1,7 @@
 
 <?php
- // http://nuk.arduino.org.tw:8888/dhtdata/ShowChartlistday.php?MAC=E89F6DE8F3BC&dt1=20200101&dt2=20221231	
+	//http://ncnu.arduino.org.tw:9999/dhtdata/ShowChartlistday.php?MAC=CC50E3B5BB20
+	
    	include("../comlib.php");		//使用資料庫的呼叫程式
    	include("../Connections/iotcnn.php");		//使用資料庫的呼叫程式
 		//	Connection() ;
@@ -42,20 +43,22 @@
 	}
 			
 			
-	$qry ="select MAC, left(systime,8) as systime, avg(temperature) as temperature, avg(humidity) as humidity from nukiot.dhtData where MAC = '%s' and systime >= '%s' and systime <= '%s' group by left(systime,8) order by systime asc " ;		//將dhtdata的資料找出來
+	$qry ="select MAC, left(systime,8) as systime, avg(temperature) as temperature, avg(humidity) as humidity from ncnuiot.dhtData where MAC = '%s' and systime >= '%s' and systime <= '%s' group by left(systime,8) order by systime asc " ;		//將dhtdata的資料找出來
 	$qrystr=sprintf($qry,$mid,$dd1,$dd2) ;		//將dhtdata的資料找出來
 			
-	echo $qrystr."<br>" ;
+	//echo $qrystr."<br>" ;
+//	int aa[] = {1,3,45,6,7} ;  == 	$aa = array(4,5,6,7,8,9);
+//	int bb[] = {} ;  ==  $bb = array();
 	$d00 = array();		// declare blank array of d00
 	$d00a = array();		// declare blank array of d00
 	$d01 = array();	// declare blank array of d01
 	$d02 = array();	// declare blank array of d02
 	$d03 = array();	// declare blank array of d03
 	
-	$result=mysqli_query($link ,$qrystr);		//將dhtdata的資料找出來(只找最後5
+	$result=mysql_query($qrystr,$link);		//將dhtdata的資料找出來(只找最後5
 //	echo "step 02 . <br>" ;
   if($result!==FALSE){
-	 while($row = mysqli_fetch_array($result)) 
+	 while($row = mysql_fetch_array($result)) 
 	 {
 			array_push($d00, trandate($row["systime"]));		// $row[欄位名稱] 就可以取出該欄位資料
 			array_push($d00a, $row["systime"]);		// $row[欄位名稱] 就可以取出該欄位資料
@@ -67,12 +70,12 @@
   }
 			
 //	echo "step 03 . <br>" ;		
-	 mysqli_free_result($result);	// 關閉資料集
+	 mysql_free_result($result);	// 關閉資料集
 //	echo "step 04 . <br>" ;	 
-	 mysqli_close($link);		// 關閉連線
+	 mysql_close($link);		// 關閉連線
 //	echo "step 05 . <br>" ;	 	
 
-/*
+
 		$myfile = fopen("../tmp/dhtdata.csv", "w");
 		$datah = "'%s' , '%s' , '%s' \n" ;
 		$datar = "'%s' , %10.3f , %5.2f \n" ;
@@ -85,7 +88,7 @@
 				}
 
 		fclose($myfile);
-*/
+
 
 ?>
 
@@ -96,11 +99,11 @@
 <title>Display Temperature and Humidity Data as Curve Chart by MAC</title>
 <link href="webcss.css" rel="stylesheet" type="text/css" />
 
-	<script src="../code/highcharts.js"></script>
-    <script src="../code/highcharts-more.js"></script>
-    <script src="../code/modules/exporting.js"></script>
-    <script src="../code/modules/export-data.js"></script>
-    <script src="../code/modules/accessibility.js"></script>	
+	<script src="/code/highcharts.js"></script>
+    <script src="/code/highcharts-more.js"></script>
+    <script src="/code/modules/exporting.js"></script>
+    <script src="/code/modules/export-data.js"></script>
+    <script src="/code/modules/accessibility.js"></script>	
 </head>
 <body>
 <?php

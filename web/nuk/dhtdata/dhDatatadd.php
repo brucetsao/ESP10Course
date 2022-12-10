@@ -5,47 +5,15 @@
 		//	Connection() ;
   	$link=Connection();		//產生mySQL連線物件
 
-//	if(is_array($_GET)&&count($_GET)>0)//先判断是否通过get传值了
-//    {
-		echo "GET DATA passed <br>" ;
-        if(!isset($_GET["MAC"]))//是否存在"MAC"的参数
-        {
-            echo "MAC address lost <br>" ;
-			die();
-        }
-        if(!isset($_GET["T"]))//是否存在"Temperature"的参数
-        {
-            echo "Temperature loss <br>" ;
-			die();
-        }
-        if(!isset($_GET["H"]))//是否存在"humidity"的参数
-        {
-            echo "humidity loss <br>" ;
-			die();
-        }
 	$temp0=$_GET["MAC"];		//取得POST參數 : MAC address
 	$temp1=$_GET["T"];		//取得POST參數 : temperature
-	$temp2=$_GET["H"];		//取得POST參數 : humidity		
- //  }
+	$temp2=$_GET["H"];		//取得POST參數 : humidity
 
-
-
-//	if empty(trim($temp0))//MAC 是否空白的参数
-	echo "(".trim($temp0).")<br>";
-	if (trim($temp0) == "")//MAC 是否空白的参数
-	{
-		echo "MAC Address is empty string <br>" ;
-		die();
-	}
-
-//	$temp0=$_GET["MAC"];		//取得POST參數 : MAC address
-//	$temp1=$_GET["T"];		//取得POST參數 : temperature
-//	$temp2=$_GET["H"];		//取得POST參數 : humidity	
 	$sysdt = getdataorder() ;
 //	$ddt = getdataorder() ;
 	
-	//http://nuk.arduino.org.tw:8888/dhtdata/dhDatatadd.php?MAC=AABBCCDDEEFF&T=34&H=34
-	// 主機：http://nuk.arduino.org.tw:8888/
+	//http://localhost:8888/nuk/dhtdata/dhDatatadd.php?MAC=AABBCCDDEEFF&T=34&H=34
+	// 主機：http://localhost:8888/
 	//Http GET程式：dhtdata/dhDatatadd.php
 	//傳遞的參數：MAC=AABBCCDDEEFF&T=34&H=34
 		//MAC=網卡編號(需大寫)
@@ -67,7 +35,7 @@
 
 	//select * from dhtdata order by id desc;
 //--------------
-	$qrystr = sprintf("insert into nukiot.dhtData (MAC,temperature, humidity, systime) VALUES ( '%s', %f, %f, '%s');" ,$temp0,$temp1,$temp2,$sysdt) ;
+	$qrystr = sprintf("insert into nukiot.dhtdata (MAC,temperature, humidity, systime) VALUES ( '%s', %f, %f, '%s');" ,$temp0,$temp1,$temp2,$sysdt) ;
 	echo $qrystr ;
 	echo "<br>" ;
 	if (mysqli_query($link,$qrystr))

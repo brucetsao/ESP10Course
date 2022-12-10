@@ -1,29 +1,52 @@
+//-------wifi declare
+
+#include <String.h>
 #include <WiFi.h>   //使用網路函式庫
 #include <WiFiClient.h>   //使用網路用戶端函式庫
 #include <WiFiMulti.h>    //多熱點網路函式庫
 
 WiFiMulti wifiMulti;    //產生多熱點連線物件
-String IpAddress2String(const IPAddress& ipAddress) ;
-//#define LedPin 2   // Set the GPIO pin where you connected your test LED or comment this line out if your dev board has a built-in LED
-      //設定燈號為GPIO 2
-// Set these to your desired credentials.
-const char* host = "www.sparkfun.com";    //測試主機名稱
-const char* streamId   = "....................";
-const char* privateKey = "....................";
+ WiFiClient client;
   IPAddress ip ;    //網路卡取得IP位址之原始型態之儲存變數
   String IPData ;   //網路卡取得IP位址之儲存變數
   String APname ;   //網路熱點之儲存變數
   String MacData ;   //網路卡取得網路卡編號之儲存變數 
   long rssi ;   //網路連線之訊號強度'之儲存變數
   int status = WL_IDLE_STATUS;  //取得網路狀態之變數
-  int value = 0;
-void initWiFi()   //網路連線，連上熱點
+  
+
+String IpAddress2String(const IPAddress& ipAddress) ;  //轉換ipaddress變數形態到字串型態
+String GetMacAddress() ;   //取得網路卡編號
+void ShowInternet() ;  //秀出網路連線資訊
+
+
+
+
+
+void initAll()    //初始化系統
 {
+  Serial.begin(9600);
+  //啟動通訊埠，用9600 bps速率進行通訊
+  Serial.println();
+   //通訊埠印出  換行
+
+    Serial.println("System Start"); //印出 "System Start"
+   //通訊埠印出 "System Start"
+   //-----------------------------------------
+
+}
+
+
+void initWiFi()   //網路連線，連上熱點
+{ 
+  MacData = GetMacAddress(); //取得mac address
   //加入連線熱點資料
   wifiMulti.addAP("NCNUIOT", "12345678");  //加入一組熱點
-  wifiMulti.addAP("NCNUIOT2", "12345678");  //加入一組熱點
-  wifiMulti.addAP("ABC", "12345678");  //加入一組熱點
+  wifiMulti.addAP("NUKIOT", "iot12345");  //加入一組熱點
+
+
   // We start by connecting to a WiFi network
+
   Serial.println();
   Serial.println();
   Serial.print("Connecting to ");
@@ -34,7 +57,7 @@ void initWiFi()   //網路連線，連上熱點
     // wifiMulti.run() 啟動多熱點連線物件，進行已經紀錄的熱點進行連線，
     // 一個一個連線，連到成功為主，或者是全部連不上
     // WL_CONNECTED 連接熱點成功
-    Serial.println(".");   //通訊埠印出
+    Serial.print(".");   //通訊埠印出
     delay(500) ;  //停500 ms
      wifiMulti.run();   //多網路熱點設定連線
   }
@@ -47,7 +70,10 @@ void initWiFi()   //網路連線，連上熱點
     IPData = IpAddress2String(ip) ;
     Serial.println(IPData);   //通訊埠印出 WiFi.localIP()==>從熱點取得IP位址
     //通訊埠印出連接熱點取得的IP位址
-  }
+    ShowInternet() ;  //秀出網路連線資訊
+    
+ 
+}
 void ShowInternet()   //秀出網路連線資訊
 {
   Serial.print("MAC:") ;
@@ -59,10 +85,6 @@ void ShowInternet()   //秀出網路連線資訊
   Serial.print("IP:") ;
   Serial.print(IPData) ;
   Serial.print("\n") ;    
-  //OledLineText(1,"MAC:"+MacData) ;
-  //OledLineText(2,"IP:"+IPData);
-   //ShowMAC() ;
-  //ShowIP()  ;
 }
 //--------------------
 //----------Common Lib
@@ -80,6 +102,8 @@ long POW(long num, int expo)
    return tmp ; 
   }
 }
+
+
 String SPACE(int sp)
 {
     String tmp = "" ;
@@ -89,6 +113,8 @@ String SPACE(int sp)
       }
     return tmp ;
 }
+
+
 String strzero(long num, int len, int base)
 {
   String retstring = String("");
@@ -104,6 +130,8 @@ String strzero(long num, int len, int base)
         tmp[ln-1] = hexcode[tmpchr] ;
         ln++ ;
          tmpnum = (long)(tmpnum/base) ;
+ 
+        
     }
     for (i = len-1; i >= 0 ; i --)
       {
@@ -112,6 +140,9 @@ String strzero(long num, int len, int base)
     
   return retstring;
 }
+
+
+
 unsigned long unstrzero(String hexstr, int base)
 {
   String chkstring  ;
@@ -129,9 +160,12 @@ unsigned long unstrzero(String hexstr, int base)
            tmp = hexstr.charAt(i) ;   // give i th char and return this char
            tmp1 = hexcode.indexOf(tmp) ;
       tmpnum = tmpnum + tmp1* POW(base,(len -i -1) )  ;
+ 
+        
     }
   return tmpnum;
 }
+
 String  print2HEX(int number) {
   String ttt ;
   if (number >= 0 && number < 16)
@@ -159,14 +193,17 @@ String GetMacAddress()    //取得網路卡編號
     Tmp.toUpperCase() ;
   return Tmp ;
 }
+
 void ShowMAC()  //於串列埠印出網路卡號碼
 {
   
   Serial.print("MAC Address:(");  //印出 "MAC Address:("
   Serial.print(MacData) ;   //印出 MacData 變數內容
   Serial.print(")\n");    //印出 ")\n"
+
+
 }
-String IpAddress2String(const IPAddress& ipAddress)
+String IpAddress2String(const IPAddress& ipAddress)   //轉換ipaddress變數形態到字串型態
 {
   //回傳ipAddress[0-3]的內容，以16進位回傳
   return String(ipAddress[0]) + String(".") +\
@@ -174,6 +211,10 @@ String IpAddress2String(const IPAddress& ipAddress)
   String(ipAddress[2]) + String(".") +\
   String(ipAddress[3])  ; 
 }
+
+
+
+
 String chrtoString(char *p)
 {
     String tmp ;
@@ -196,6 +237,7 @@ String chrtoString(char *p)
     }
 }
 
+
 void CopyString2Char(String ss, char *p)
 {
          //  sprintf(p,"%s",ss) ;
@@ -208,6 +250,7 @@ void CopyString2Char(String ss, char *p)
     ss.toCharArray(p, ss.length()+1) ;
    // *(p+ss.length()+1) = 0x00 ;
 }
+
 boolean CharCompare(char *p, char *q)
   {
       boolean flag = false ;
@@ -231,7 +274,11 @@ boolean CharCompare(char *p, char *q)
       {
         return true ;
       }
+      
+        
   }
+
+
 String Double2Str(double dd,int decn)
 {
     int a1 = (int)dd ;
@@ -249,4 +296,5 @@ String Double2Str(double dd,int decn)
     {
       return String(a1) ;
     }
+  
 }

@@ -46,7 +46,7 @@ void loop()
  
   mqttclient.loop();    //處理MQTT 通訊處理程序
   //給作業系統處理多工程序的機會
-  delay(30000) ;
+  delay(10000) ;
 }
 
 void initAll()     //系統初始化
