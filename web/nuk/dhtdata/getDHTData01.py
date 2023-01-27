@@ -1,10 +1,10 @@
 import sys	#作業系統套件，用於檔案、目錄資料使用
 import requests	#建立雲端WinSocket連線的套件
 import json	#了解json內容的json物件的套件
-import time	#系統時間套件
-import datetime	#時鐘物件
-import math	#數學運算套件
-import os	# #作業系統套件，用於檔案、目錄資料使用
+import time  #系統時間套件
+import datetime  #時鐘物件
+import math   #數學運算套件
+import os   # #作業系統套件，用於檔案、目錄資料使用
 import http.client	#winsock連線物件之討建
 import unicodedata	#Unicode
 from pathlib import Path	#存取檔案路徑之套件
@@ -33,7 +33,9 @@ except Exception as err:
     sys.exit(0)
 else:
     print('Success!')
-    table=json.loads(res.content.decode('utf-8'))    
-    print(json.dumps(table, sort_keys=True, indent=4)) 
+    table=json.loads(res.content.decode('utf-8'))
+    #print(table)
+    print(json.dumps(table, sort_keys=True, indent=4))
     #用json beauty 方式顯示
-    
+    # sort_keys = True 自動排序
+    # indent=4 用階層式方式展開

@@ -6,7 +6,7 @@ void setup()
     initAll() ; //系統設定
 
     // Set WiFi to station mode and disconnect from an AP if it was previously connected
-    WiFi.mode(WIFI_STA);    //啟動wifi標準模式
+   // WiFi.mode(WIFI_STA);    //啟動wifi標準模式
     WiFi.disconnect();  //wifi斷線
     delay(100);   // 延遲100單位
 
@@ -41,7 +41,7 @@ void loop()
             Serial.print(" (");
             Serial.print(WiFi.RSSI(i));   //通訊埠印出第n個基地台強弱
             Serial.print(")");
-            Serial.println((WiFi.encryptionType(i) == WIFI_AUTH_OPEN)?" ":"*");
+          //  Serial.println((WiFi.encryptionType(i) == WIFI_AUTH_OPEN)?" ":"*");
             //通訊埠印出第n個基地台  WiFi.encryptionType(i) 加密型態
             // WIFI_AUTH_OPEN ==沒有密碼
             delay(10);  // 延遲10單位  0.01 sec
