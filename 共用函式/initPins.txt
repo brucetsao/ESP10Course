@@ -1,0 +1,229 @@
+/*
+這段 Arduino C 語言程式碼定義了
+用於 WiFi 網路連接的函數和變數，
+以及一些通用的輔助函數和工具，
+用於管理和處理字串、數字等。
+這段程式碼中，
+包含了 WiFi 連接的初始設定、
+網路資訊的顯示，
+以及一些通用函數的實現，
+如字串轉換、
+字串比較、
+進制轉換等。
+這些函數可以用於各種 Arduino 項目中，
+尤其是在處理網路通訊和字串操作方面。
+
+*/
+
+//------- WiFi 宣告
+
+#include <String.h>  // 字串相關函式庫
+#include <WiFi.h>  // WiFi 相關函式庫
+#include <WiFiMulti.h>  // 支援多個 WiFi 熱點的函式庫
+WiFiMulti wifiMulti;  // 用於管理多個 WiFi 熱點的物件
+
+#include <WiFiClient.h>  // WiFi 用戶端函式庫
+WiFiClient client;  // 建立 WiFi 用戶端
+
+IPAddress ip;  // 用於儲存 IP 位址的變數
+String IPData;  // 用於儲存 IP 位址的字串
+String APname;  // 用於儲存 WiFi 熱點名稱的字串
+String MacData;  // 用於儲存網路卡的 MAC 地址的字串
+long rssi;  // 儲存 WiFi 訊號強度
+int status = WL_IDLE_STATUS;  // 用於儲存 WiFi 連接狀態
+
+// 定義一個函數，將 IPAddress 型態轉換為字串
+String IpAddress2String(const IPAddress& ipAddress);
+
+// 定義函數，取得網路卡的 MAC 地址
+String GetMacAddress();
+
+// 定義函數，顯示網路連接資訊
+void ShowInternet();
+
+// 定義初始化函數
+void initAll() {
+  Serial.begin(9600);  // 啟動串列埠，通訊速率 9600 bps
+  Serial.println();  // 換行
+  Serial.println("System Start");  // 打印 "System Start"
+}
+
+// 定義初始化 WiFi 連接的函數
+void initWiFi() { 
+  MacData = GetMacAddress();  // 取得 MAC 地址
+  // 加入 WiFi 熱點
+  wifiMulti.addAP("NCNUIOT", "12345678");
+  wifiMulti.addAP("NUKIOT", "iot12345");
+
+  Serial.println();
+  Serial.println();
+  Serial.print("Connecting to ");
+  wifiMulti.run();  // 啟動 WiFi 連接
+  while (WiFi.status() != WL_CONNECTED) {  // 迴圈等待連接
+    Serial.print(".");  // 打印等待訊號
+    delay(500);  // 延遲 500 毫秒
+    wifiMulti.run();  // 繼續嘗試連接
+  }
+  Serial.println("WiFi connected");  // 打印 WiFi 連接成功
+  APname = WiFi.SSID();  // 取得連接的 SSID
+  Serial.print("AP Name: ");
+  Serial.println(APname);
+  ip = WiFi.localIP();  // 取得本機 IP 位址
+  IPData = IpAddress2String(ip);  // 將 IPAddress 轉換為字串
+  Serial.print("IP address: ");
+  Serial.println(IPData);
+  ShowInternet();  // 顯示網路連接資訊
+}
+
+// 定義函數，顯示網路連接資訊
+void ShowInternet() {
+  Serial.print("MAC: ");
+  Serial.print(MacData);
+  Serial.print("\n");
+  Serial.print("SSID: ");
+  Serial.print(APname);
+  Serial.print("\n");
+  Serial.print("IP: ");
+  Serial.print(IPData);
+  Serial.print("\n");
+}
+
+// 通用函數，計算乘方
+long POW(long num, int expo) {
+  long tmp = 1;
+  if (expo > 0) {
+    for(int i = 0; i < expo; i++) {
+      tmp = tmp * num;
+    }
+  }
+  return tmp;
+}
+
+// 通用函數，生成指定數量的空白字元
+String SPACE(int sp) {
+  String tmp = "";
+  for (int i = 0; i < sp; i++) {
+    tmp.concat(' ');
+  }
+  return tmp;
+}
+
+// 通用函數，將數字轉換為字串，並填充零到指定長度
+String strzero(long num, int len, int base) {
+  String retstring = String("");
+  char tmp[10];
+  long tmpnum = num;
+  char hexcode[] = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+  int i, tmpchr, ln = 1;
+  while (ln <= len) {
+    tmpchr = (int)(tmpnum % base);
+    tmp[ln - 1] = hexcode[tmpchr];
+    ln++;
+    tmpnum = (long)(tmpnum / base);
+  }
+  for (i = len - 1; i >= 0; i--) {
+    retstring.concat(tmp[i]);
+  }
+  return retstring;
+}
+
+// 通用函數，將字串轉換為無符號整數
+unsigned long unstrzero(String hexstr, int base) {
+  int len = hexstr.length();
+  unsigned int i, tmp, tmp1;
+  unsigned long tmpnum = 0;
+  String hexcode = "0123456789ABCDEF";
+  for (i = 0; i < len; i++) {
+    tmp = hexstr.charAt(i);  // 獲取字元
+    tmp1 = hexcode.indexOf(tmp);  // 找到該字元在 hexcode 中的索引
+    tmpnum = tmpnum + tmp1 * POW(base, len - i - 1);
+  }
+  return tmpnum;
+}
+
+// 通用函數，格式化為 16 進制字串
+String print2HEX(int number) {
+  String ttt;
+  if (number >= 0 && number < 16) {
+    ttt = "0" + String(number, HEX);
+  } else {
+    ttt = String(number, HEX);
+  }
+  return ttt;
+}
+
+// 函數，取得網路卡的 MAC 地址
+String GetMacAddress() {
+  byte mac[6];
+  String Tmp = "";
+  WiFi.macAddress(mac);  // 取得 MAC 地址
+  for (int i = 0; i < 6; i++) {
+    Tmp.concat(print2HEX(mac[i]));  // 轉換為 16 進制字串
+  }
+  Tmp.toUpperCase();  // 轉換為大寫
+  return Tmp;
+}
+
+// 函數，顯示 MAC 地址
+void ShowMAC() {
+  Serial.print("MAC Address:(");
+  Serial.print(MacData);
+  Serial.print(")\n");
+}
+
+// 通用函數，將 IPAddress 型態轉換為字串
+String IpAddress2String(const IPAddress& ipAddress) {
+  return String(ipAddress[0]) + "." +
+    String(ipAddress[1]) + "." +
+    String(ipAddress[2]) + "." +
+    String(ipAddress[3]);
+}
+
+// 通用函數，將 C 字串轉換為 Arduino String 型態
+String chrtoString(char *p) {
+  String tmp;
+  char c;
+  int count = 0;
+  while (count < 100) {
+    c = *p;  // 取得字元
+    if (c != 0x00) {
+      tmp.concat(String(c));  // 將字元添加到字串
+    } else {
+      return tmp;  // 如果遇到結束符，返回字串
+    }
+    count++;
+    p++;
+  }
+}
+
+// 通用函數，將 Arduino String 轉換為 C 字串
+void CopyString2Char(String ss, char *p) {
+  ss.toCharArray(p, ss.length() + 1);  // 複製字串到 C 字串
+}
+
+// 函數，比較兩個 C 字串
+boolean CharCompare(char *p, char *q) {
+  int count = 0;
+  int nomatch = 0;
+  while (count < 100) {
+    if (*(p + count) == 0x00 or *(q + count) == 0x00)
+      break;  // 如果遇到結束符，停止比較
+    if (*(p + count) != *(q + count)) {
+      nomatch++;  // 記錄不匹配的次數
+    }
+    count++;
+  }
+  return nomatch == 0;  // 如果不匹配次數為 0，則字串相同
+}
+
+// 通用函數，將浮點數轉換為字串
+String Double2Str(double dd, int decn) {
+  int a1 = (int)dd;
+  double a2 = dd - a1;  // 取得小數部分
+  int a3 = (int)(a2 * (10^decn));  // 取得小數位數
+  if (decn > 0) {
+    return String(a1) + "." + String(a3);  // 將整數和小數部分組合
+  } else {
+    return String(a1);  // 如果沒有小數位數，直接返回整數部分
+  }
+}

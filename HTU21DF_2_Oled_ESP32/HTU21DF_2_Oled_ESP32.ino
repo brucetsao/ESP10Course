@@ -1,6 +1,8 @@
 #include "OledLib.h"  // Oled LCD 12832
 #include "HTU21DLib.h"  // 溫溼度專用模組
 
+void initALL() ; //系統硬體/軟體初始化
+
 
 void setup() 
 {
@@ -13,9 +15,10 @@ void setup()
 
 void loop() 
 {
-    
+    //讀出溫溼度放到變數
     float temp = ReadTemperature(); //讀取HTU21D 溫溼度感測器之溫度
     float rel_hum = ReadHumidity(); //讀取HTU21D 溫溼度感測器之溼度
+    //印變數內容
     Serial.print("Temp: ");               //印出 "Temp: "
     Serial.print(temp);                   //印出 temp變數內容
     Serial.print(" C");                   //印出 " C"  
@@ -24,6 +27,7 @@ void loop()
     Serial.print(rel_hum);                //印出 rel_hum變數內容
     Serial.println(" \%");                //印出 " \%"
     _clearOled(); //清除螢幕
+    //把溫溼度資訊送到OLED 畫面站存記憶體
     printTemperatureonOled(temp) ;  //列印溫度到Oled 12832顯示模組
     printHumidityonOled(rel_hum) ;   //列印濕度到Oled 12832顯示模組
     _updateBuffer();    //更新圖型記憶體內容到畫面

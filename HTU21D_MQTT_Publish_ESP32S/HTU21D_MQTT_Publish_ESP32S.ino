@@ -29,11 +29,13 @@ void loop()
 {
       ReadSensor()  ; //讀取溫溼度
 
-      Genjsondata("A123456789","BruceTsao",ReadTemperature(),ReadHumidity()) ;  
+      Genjsondata(MacData,"BruceTsao",ReadTemperature(),ReadHumidity()) ;  
       //產生 溫溼度資料，並轉到buffer變數
       Serial.println(buffer) ;    //印出buffer變數
       mqttclient.publish(mytopic, buffer);    //傳送buffer變數到MQTT Broker，指定mytopic傳送
-   
+      Serial.println(mytopic);    //Output to Serial var_mytopic
+      Serial.println(buffer);    //Output to Serial var_buffer
+      
    if (!mqttclient.connected())   //如果MQTT 斷線(沒有連線)
   {
    

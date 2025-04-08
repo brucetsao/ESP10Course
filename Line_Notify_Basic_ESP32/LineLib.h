@@ -1,4 +1,4 @@
-#define LINE_TOKEN "LLrWcTrJEuJxKsLTBzcFEWI9j736aeDyoWulhIHinB4" 
+#define LINE_TOKEN "yj5E7IgCf62m4D0mkzwus864jbHAU39LB4A9b6VIjn6" 
 
 #include <TridentTD_LineNotify.h>
 

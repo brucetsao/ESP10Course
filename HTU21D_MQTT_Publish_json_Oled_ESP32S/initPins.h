@@ -32,8 +32,10 @@ String IpAddress2String(const IPAddress& ipAddress) ;
 void initWiFi()   //網路連線，連上熱點
 {
   //加入連線熱點資料
-  wifiMulti.addAP("NCNUIOT", "12345678");  //加入一組熱點
-  wifiMulti.addAP("NCNUIOT2", "12345678");  //加入一組熱點
+     wifiMulti.addAP("lab309", "");  //加入一組熱點  
+    wifiMulti.addAP("NCNUIOT", "12345678");  //加入一組熱點
+    wifiMulti.addAP("NCNUIOT2", "12345678");  //加入一組熱點
+    wifiMulti.addAP("ABC", "12345678");  //加入一組熱點
   wifiMulti.addAP("NUKIOT", "iot12345");  //加入一組熱點
 
   // We start by connecting to a WiFi network

@@ -7,9 +7,8 @@ String IpAddress2String(const IPAddress& ipAddress) ;
 //#define LedPin 2   // Set the GPIO pin where you connected your test LED or comment this line out if your dev board has a built-in LED
       //設定燈號為GPIO 2
 // Set these to your desired credentials.
-const char* host = "www.sparkfun.com";    //測試主機名稱
-const char* streamId   = "....................";
-const char* privateKey = "....................";
+const char* host = "http://ncnu.arduino.org.tw/brucetsao/index.php";    //測試主機名稱
+String GetMacAddress();   //取得網路卡編號
   IPAddress ip ;    //網路卡取得IP位址之原始型態之儲存變數
   String IPData ;   //網路卡取得IP位址之儲存變數
   String APname ;   //網路熱點之儲存變數
@@ -20,9 +19,11 @@ const char* privateKey = "....................";
 void initWiFi()   //網路連線，連上熱點
 {
   //加入連線熱點資料
-  wifiMulti.addAP("NCNUIOT", "12345678");  //加入一組熱點
+  //wifiMulti.addAP(SSID_Name, SSID_PASSWORD);  //加入一組熱點
+  wifiMulti.addAP("NCNUIOT1", "12345678");  //加入一組熱點
+  wifiMulti.addAP("NCNUIOT", "0123456789");  //加入一組熱點
   wifiMulti.addAP("NCNUIOT2", "12345678");  //加入一組熱點
-  wifiMulti.addAP("ABC", "12345678");  //加入一組熱點
+  wifiMulti.addAP("NUKIOT", "iot12345");  //加入一組熱點
   // We start by connecting to a WiFi network
   Serial.println();
   Serial.println();
@@ -38,12 +39,13 @@ void initWiFi()   //網路連線，連上熱點
     delay(500) ;  //停500 ms
      wifiMulti.run();   //多網路熱點設定連線
   }
+    MacData = GetMacAddress() ;    //取得網路卡編號
     Serial.println("WiFi connected");   //通訊埠印出 WiFi connected
     Serial.print("AP Name: ");   //通訊埠印出 AP Name:
     APname = WiFi.SSID();
     Serial.println(APname);   //通訊埠印出 WiFi.SSID()==>從熱點名稱
     Serial.print("IP address: ");   //通訊埠印出 IP address:
-    ip = WiFi.localIP();
+    ip = WiFi.localIP();  //取得開發版IP Address 
     IPData = IpAddress2String(ip) ;
     Serial.println(IPData);   //通訊埠印出 WiFi.localIP()==>從熱點取得IP位址
     //通訊埠印出連接熱點取得的IP位址
@@ -151,21 +153,21 @@ String GetMacAddress()    //取得網路卡編號
   byte mac[6];
   
   // print your MAC address:
-  WiFi.macAddress(mac);
+  WiFi.macAddress(mac);   
+  //透過WIFI物件，用其.macAddress(mac)的方法，傳入mac六個byte的陣列，用來取得WIFI的網路卡編號(MAC Address)
+  
   for (int i=0; i<6; i++)
     {
         Tmp.concat(print2HEX(mac[i])) ;
+        //mac[i]取得第i個mac address的內容
+        //print2HEX(byte 數字) ，將byte 數字轉成16進位表示的文字
+        // tmp.concat(新的字串)，  把"新的字串"內容加到tmp字串後面
     }
     Tmp.toUpperCase() ;
   return Tmp ;
 }
-void ShowMAC()  //於串列埠印出網路卡號碼
-{
-  
-  Serial.print("MAC Address:(");  //印出 "MAC Address:("
-  Serial.print(MacData) ;   //印出 MacData 變數內容
-  Serial.print(")\n");    //印出 ")\n"
-}
+
+
 String IpAddress2String(const IPAddress& ipAddress)
 {
   //回傳ipAddress[0-3]的內容，以16進位回傳

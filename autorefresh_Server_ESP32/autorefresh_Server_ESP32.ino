@@ -1,78 +1,73 @@
-#include "initPins.h"     // 腳位與系統模組
-#include "HTMLLib.h"    // 溫溼度專用模組
+#include "initPins.h"     // 引入腳位初始化模組
+#include "HTMLLib.h"    // 引入HTML生成模組，用於網頁介面和溫濕度傳感器等
 
+/*
+這段程式碼初始化了網路連接並啟動了一個網頁伺服器，
+並在客戶端連接時處理HTTP請求。該程式碼主要用於建立一個簡單的網頁伺服器，
+並處理來自客戶端的請求。
+*/
 void setup() 
 {
-    initALL() ; //系統硬體/軟體初始化
-    initWiFi() ;  //網路連線，連上熱點
-    ShowInternet();  //秀出網路連線資訊
-    server.begin(80); //啟動網頁伺服器
-     delay(1000) ;    //停1秒
-     Serial.println("Home System Start");
-
-
+    initALL(); // 系統硬體和軟體初始化
+    initWiFi();  // 網路連接，連接到WiFi熱點
+    ShowInternet();  // 顯示網路連接資訊
+    server.begin(80); // 啟動網頁伺服器，監聽埠號80
+    delay(1000);  // 等待1秒
+    Serial.println("Home System Start");  // 串列監視器中輸出系統啟動訊息
 }
 
 void loop() 
 {
    //--------------------
-  WiFiClient client = server.available();   // 網頁伺服器 listen Port 有人來連線嘞，for incoming clients
-  //宣告一個網路連線socket: client，來接受網頁伺服器 listen Port 來連線的人
-  if (client)   //有一個人(>0)
+  WiFiClient client = server.available();   // 檢查是否有客戶端嘗試連接到伺服器
+  if (client)   // 如果有客戶端連接
   { 
-    // if you get a client,
-   Serial.println("New Client.");           // 有人來嘞，print a message out the serial port
-    String currentLine = "";                // make a String to hold incoming data from the client
-    while (client.connected())
-    { // loop while the client's connected
-      if (client.available())
-      { // if there's bytes to read from the client,
-        char c = client.read();             // read a byte, then
-        Serial.write(c);                    // print it out the serial monitor
-        if (c == '\n')
-        { // if the byte is a newline character
-
-          // if the current line is blank, you got two newline characters in a row.
-          // that's the end of the client HTTP request, so send a response:
+    // 當有客戶端連接時
+    Serial.println("New Client.");  // 輸出新客戶端連接訊息
+    String currentLine = "";  // 用於儲存從客戶端收到的資料
+    while (client.connected())  // 當客戶端連接中
+    {
+      if (client.available())  // 如果有資料可讀
+      {
+        char c = client.read();  // 讀取一個字元
+        Serial.write(c);  // 將字元寫到串列監視器中
+        if (c == '\n')  // 如果是換行字元
+        {
+          // 如果當前行為空，表示收到連續兩個換行字元，意味著HTTP請求結束
           if (currentLine.length() == 0)
           {
-            // HTTP headers always start with a response code (e.g. HTTP/1.1 200 OK)
-            // and a content-type so the client knows what's coming, then a blank line:
-            String tmp = TranHTML(PageTitle,String(millis()),3) ;
-            client.print(tmp) ;
-            Serial.println(tmp) ;
-            // The HTTP response ends with another blank line:
-            client.println();
-            // break out of the while loop:
+            // HTTP標頭以狀態碼開始，例如 "HTTP/1.1 200 OK"
+            // 然後是內容類型標頭，接著是一個空行
+            String tmp = TranHTML(PageTitle, String(millis()), 3); // 生成HTML響應
+            client.print(tmp);  // 發送HTML響應
+            Serial.println(tmp);  // 在串列監視器中輸出響應內容
+            // HTTP回應以另一個空行結束
+            client.println();  // 加上空行
+            // 結束循環
             break;
-          }   // end of if (currentLine.length() == 0)
+          }
           else
-          { // if you got a newline, then clear currentLine:
+          { // 如果當前行非空，則清除當前行
             currentLine = "";
-          }   // end of if (currentLine.length() == 0)
-        } // end of if (c == '\n')
-        else if (c != '\r')
-        { // if you got anything else but a carriage return character,
-          currentLine += c;      // add it to the end of the currentLine
-        }   // end of else if (c != '\r')
+          }
+        } 
+        else if (c != '\r')  // 如果不是回車字元
+        {
+          currentLine += c;  // 將字元添加到當前行
+        }
+      }
+    }
+    // 關閉連接
+    client.stop();  // 停止客戶端連接
+    Serial.println("Client Disconnected.");  // 輸出客戶端斷開連接訊息
+  }
 
-        // Check to see if the client request was "GET /H" or "GET /L":
-
-      } // end of  if (client.available())
-    }   // end of while (client.connected())
-    // close the connection:
-    client.stop();
-    Serial.println("Client Disconnected.");
-  }   // end of  if (client)
-
-    //------------------
-   delay(100) ;
-
+   //------------------
+   delay(100);  // 短暫延遲
 }
 
-void initALL()  //系統硬體/軟體初始化
+void initALL()  // 系統硬體和軟體初始化
 {
-    Serial.begin(9600);
-    Serial.println("System Start");
-    
+    Serial.begin(9600);  // 設置串列通訊波特率為9600
+    Serial.println("System Start");  // 輸出系統啟動訊息
 }

@@ -62,12 +62,15 @@
   }
   void ShowInternet()   //秀出網路連線資訊
   {
+    //印出MAC Address
     Serial.print("MAC:") ;
     Serial.print(MacData) ;
     Serial.print("\n") ;
+    //印出SSID名字
     Serial.print("SSID:") ;
     Serial.print(APname) ;
     Serial.print("\n") ;
+    //印出取得的IP 名字
     Serial.print("IP:") ;
     Serial.print(IPData) ;
     Serial.print("\n") ;    
@@ -79,213 +82,200 @@
   }
   //--------------------
 //----------Common Lib
+// 計算 num 的 expo 次方
 long POW(long num, int expo)
 {
-  long tmp =1 ;
-  if (expo > 0)
+  long tmp = 1;  //暫存變數
+
+  if (expo > 0) //次方大於零
   { 
-        for(int i = 0 ; i< expo ; i++)
-          tmp = tmp * num ;
-         return tmp ; 
-  } 
-  else
+    for (int i = 0; i < expo; i++)  //利用迴圈累乘
   {
-   return tmp ; 
+      tmp = tmp * num;  // 不斷乘以num
+    }
+    return tmp;   //回傳產生變數
+  } 
+  else 
+  {
+    return tmp;  // 若expo小於或等於0，返回1
   }
 }
 
-
-String SPACE(int sp)
+// 生成指定長度的空格字串
+String SPACE(int sp)  //sp為傳入產生空白字串長度
 {
-    String tmp = "" ;
-    for (int i = 0 ; i < sp; i++)
-      {
-          tmp.concat(' ')  ;
-      }
-    return tmp ;
+  String tmp = "";  //產生空字串
+  for (int i = 0; i < sp; i++)  //利用迴圈累加空白字元
+  {
+    tmp.concat(' ');  // 加入空格
+  }
+  return tmp; //回傳產生空白字串
 }
 
 
+// 轉換數字為指定長度與進位制的字串，並補零
 String strzero(long num, int len, int base)
 {
-  String retstring = String("");
-  int ln = 1 ;
-    int i = 0 ; 
-    char tmp[10] ;
-    long tmpnum = num ;
-    int tmpchr = 0 ;
-    char hexcode[]={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'} ;
-    while (ln <= len)
-    {
-        tmpchr = (int)(tmpnum % base) ;
-        tmp[ln-1] = hexcode[tmpchr] ;
-        ln++ ;
-         tmpnum = (long)(tmpnum/base) ;
- 
-        
-    }
-    for (i = len-1; i >= 0 ; i --)
-      {
-          retstring.concat(tmp[i]);
-      }
-    
-  return retstring;
-}
-
-
-
-unsigned long unstrzero(String hexstr, int base)
-{
-  String chkstring  ;
-  int len = hexstr.length() ;
-  
-    unsigned int i = 0 ;
-    unsigned int tmp = 0 ;
-    unsigned int tmp1 = 0 ;
-    unsigned long tmpnum = 0 ;
-    String hexcode = String("0123456789ABCDEF") ;
-    for (i = 0 ; i < (len ) ; i++)
-    {
-  //     chkstring= hexstr.substring(i,i) ; 
-      hexstr.toUpperCase() ;
-           tmp = hexstr.charAt(i) ;   // give i th char and return this char
-           tmp1 = hexcode.indexOf(tmp) ;
-      tmpnum = tmpnum + tmp1* POW(base,(len -i -1) )  ;
- 
-        
-    }
-  return tmpnum;
-}
-
-String  print2HEX(int number) {
-  String ttt ;
-  if (number >= 0 && number < 16)
+  //num 為傳入的數字
+  //len為傳入的要回傳字串長度之數字
+  // base 幾進位
+  String retstring = String("");  //產生空白字串
+  int ln = 1; //暫存變數
+  int i = 0;  //計數器
+  char tmp[10]; //暫存回傳內容變數
+  long tmpnum = num;  //目前數字
+  int tmpchr = 0; //字元計數器
+  char hexcode[] = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+  //產生字元的對應字串內容陣列
+  while (ln <= len) //開始取數字
   {
-    ttt = String("0") + String(number,HEX);
+    tmpchr = (int)(tmpnum % base);  //取得第n個字串的數字內容，如1='1'、15='F'
+    tmp[ln - 1] = hexcode[tmpchr];  //根據數字換算對應字串
+    ln++;
+    tmpnum = (long)(tmpnum / base); // 求剩下數字
+  }
+  for (i = len - 1; i >= 0; i--)
+  {
+    retstring.concat(tmp[i]);//連接字串
+  }
+  return retstring; //回傳內容
+}
+
+// 轉換指定進位制的字串為數值
+unsigned long unstrzero(String hexstr, int base) 
+{
+  String chkstring; //暫存字串
+  int len = hexstr.length();  // 取得長度
+  unsigned int i = 0;
+  unsigned int tmp = 0; //取得文字之字串位置變數
+  unsigned int tmp1 = 0;  //取得文字之對應字串位置變數
+  unsigned long tmpnum = 0; //目前數字
+  String hexcode = String("0123456789ABCDEF");   //產生字元的對應字串內容陣列
+  for (i = 0; i < len; i++)
+  {
+    hexstr.toUpperCase(); //先轉成大寫文字
+    tmp = hexstr.charAt(i); //取第i個字元
+    tmp1 = hexcode.indexOf(tmp);  //根據字元，判斷十進位數字
+    tmpnum = tmpnum + tmp1 * POW(base, (len - i - 1));  //計算數字
+  }
+  return tmpnum;  //回傳內容
+} 
+
+// 轉換數字為 16 進位字串，若小於 16 則補 0
+String print2HEX(int number) {
+  String ttt;   //暫存字串
+  if (number >= 0 && number < 16) //判斷是否在區間
+  {
+    ttt = String("0") + String(number, HEX);  //產生前補零之字串
   }
   else
   {
-      ttt = String(number,HEX);
+    ttt = String(number, HEX);//產生字串
   }
-  return ttt ;
+  return ttt; //回傳內容
 } 
-String GetMacAddress()    //取得網路卡編號
+
+// 取得網路卡MAC地址
+String GetMacAddress() 
 {
-  // the MAC address of your WiFi shield
-  String Tmp = "" ;
-  byte mac[6];
+  String Tmp = "";  //暫存字串
+  byte mac[6];  //取得網路卡MAC地址之暫存字串
+  WiFi.macAddress(mac);  // 取得MAC地址
   
-  // print your MAC address:
-  WiFi.macAddress(mac);
-  for (int i=0; i<6; i++)
-    {
-        Tmp.concat(print2HEX(mac[i])) ;
-    }
-    Tmp.toUpperCase() ;
-  return Tmp ;
+  for (int i = 0; i < 6; i++)   // 迴圈取得網路卡MAC地址每一個BYTE
+  {
+    Tmp.concat(print2HEX(mac[i]));  // 將每個MAC位元組轉為十六進制
+  }
+  
+  Tmp.toUpperCase();  // 轉換為大寫
+  return Tmp; //回傳內容
 }
 
-void ShowMAC()  //於串列埠印出網路卡號碼
-{
-  
-  Serial.print("MAC Address:(");  //印出 "MAC Address:("
-  Serial.print(MacData) ;   //印出 MacData 變數內容
-  Serial.print(")\n");    //印出 ")\n"
-
-
+// 在串列埠顯示MAC地址
+void ShowMAC() {
+  Serial.print("MAC Address:(");  // 印出標籤
+  Serial.print(MacData);   // 印出MAC地址
+  Serial.print(")\n");  // 換行
 }
+
+
+// 轉換 IPAddress 物件為字串
 String IpAddress2String(const IPAddress& ipAddress)
 {
-  //回傳ipAddress[0-3]的內容，以16進位回傳
-  return String(ipAddress[0]) + String(".") +\
-  String(ipAddress[1]) + String(".") +\
-  String(ipAddress[2]) + String(".") +\
-  String(ipAddress[3])  ; 
+  return String(ipAddress[0]) + String(".") +
+         String(ipAddress[1]) + String(".") +
+         String(ipAddress[2]) + String(".") +
+         String(ipAddress[3]);  //回傳內容
 }
 
-
-
-
+// 將 char 陣列轉為字串
 String chrtoString(char *p)
 {
-    String tmp ;
-    char c ;
-    int count = 0 ;
-    while (count <100)
+    String tmp; //暫存字串
+    char c; //暫存字元
+    int count = 0;  //計數器
+    while (count < 100) //100個字元以內
     {
-        c= *p ;
-        if (c != 0x00)
-          {
-            tmp.concat(String(c)) ;
-          }
-          else
-          {
-              return tmp ;
-          }
-       count++ ;
-       p++;
-       
+        c = *p; //取得字串之每一個字元內容
+        if (c != 0x00)  //是否未結束
+        {
+            tmp.concat(String(c));  //字元累積到字串
+        }
+        else
+        {
+            return tmp;
+        }
+        count++;
+        p++;
     }
 }
 
-
+// 複製 String 到 char 陣列
 void CopyString2Char(String ss, char *p)
 {
-         //  sprintf(p,"%s",ss) ;
-
-  if (ss.length() <=0)
-      {
-           *p =  0x00 ;
-          return ;
-      }
-    ss.toCharArray(p, ss.length()+1) ;
-   // *(p+ss.length()+1) = 0x00 ;
+  if (ss.length() <= 0)
+  {
+    *p = 0x00;
+    return;
+  }
+  ss.toCharArray(p, ss.length() + 1);
 }
 
+// 比較兩個 char 陣列是否相同
 boolean CharCompare(char *p, char *q)
-  {
-      boolean flag = false ;
-      int count = 0 ;
-      int nomatch = 0 ;
-      while (flag <100)
-      {
-          if (*(p+count) == 0x00 or *(q+count) == 0x00)
-            break ;
-          if (*(p+count) != *(q+count) )
-              {
-                 nomatch ++ ; 
-              }
-             count++ ; 
-      }
-     if (nomatch >0)
-      {
-        return false ;
-      }
-      else
-      {
-        return true ;
-      }
-      
-        
-  }
-
-
-String Double2Str(double dd,int decn)
 {
-    int a1 = (int)dd ;
-    int a3 ;
-    if (decn >0)
-    {    
-        double a2 = dd - a1 ;
-        a3 = (int)(a2 * (10^decn));
-    }
-    if (decn >0)
+    boolean flag = false;
+    int count = 0;
+    int nomatch = 0;
+    while (flag < 100)
     {
-        return String(a1)+"."+ String(a3) ;
+        if (*(p + count) == 0x00 || *(q + count) == 0x00)
+            break;
+        if (*(p + count) != *(q + count))
+        {
+            nomatch++;
+        }
+        count++;
+    }
+    return nomatch == 0;
+}
+
+// 將 double 轉為字串，保留指定小數位數
+String Double2Str(double dd, int decn)
+{
+    int a1 = (int)dd;
+    int a3;
+    if (decn > 0)
+    {
+        double a2 = dd - a1;
+        a3 = (int)(a2 * pow(10, decn));
+    }
+    if (decn > 0)
+    {
+        return String(a1) + "." + String(a3);
     }
     else
     {
-      return String(a1) ;
+        return String(a1);
     }
-  
 }

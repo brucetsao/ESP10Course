@@ -1,296 +1,190 @@
-#define _Debug 1    //輸出偵錯訊息
-#define _debug 1    //輸出偵錯訊息
-#define initDelay   6000    //初始化延遲時間
-#define loopdelay 500   //loop 延遲時間
+#define _Debug 1    // 用於輸出偵錯訊息
+#define _debug 1    // 用於輸出偵錯訊息
+#define initDelay   6000    // 初始化延遲時間為6秒
+#define loopdelay 500   // 主循環延遲時間為500毫秒
 
+#include <WiFi.h>   // 引入WiFi函式庫，用於WiFi功能
+#include <WiFiClient.h>   // 引入WiFi客戶端函式庫
+#include <WiFiMulti.h>    // 引入WiFi多熱點函式庫
 
-#include <WiFi.h>   //使用網路函式庫
-#include <WiFiClient.h>   //使用網路用戶端函式庫
-#include <WiFiMulti.h>    //多熱點網路函式庫
+WiFiMulti wifiMulti;    // 建立多熱點連線物件
 
-WiFiMulti wifiMulti;    //產生多熱點連線物件
+// 函式宣告，將IP地址轉為字串
+String IpAddress2String(const IPAddress& ipAddress);
 
+// 全域變數宣告
+IPAddress ip;    // 用於儲存網卡取得的IP地址
+String IPData;   // 用於儲存IP地址的字串
+String APname;   // 用於儲存熱點名稱
+String MacData;   // 用於儲存網卡的MAC地址
+long rssi;   // 用於儲存網路訊號強度
+int status = WL_IDLE_STATUS;  // 用於儲存網路狀態
 
+#define LEDPin 2  // 定義LED引腳號碼
+WiFiServer server(80);  // 建立伺服器物件，設定監聽埠號為80
 
-String IpAddress2String(const IPAddress& ipAddress) ;
+// 網路初始化函式
+void initWiFi() {
+  // 加入連線的熱點資料
+  wifiMulti.addAP("NCNUIOT", "12345678");  // 加入一個熱點
+  wifiMulti.addAP("NCNUIOT2", "12345678");  // 加入第二個熱點
+  wifiMulti.addAP("ABC", "12345678");  // 加入第三個熱點
 
+  Serial.println();  // 換行
+  Serial.print("Connecting to ");  // 輸出連線訊息
+  wifiMulti.run();  // 嘗試連接熱點
 
-
-
-  IPAddress ip ;    //網路卡取得IP位址之原始型態之儲存變數
-  String IPData ;   //網路卡取得IP位址之儲存變數
-  String APname ;   //網路熱點之儲存變數
-  String MacData ;   //網路卡取得網路卡編號之儲存變數 
-  long rssi ;   //網路連線之訊號強度'之儲存變數
-  int status = WL_IDLE_STATUS;  //取得網路狀態之變數
-  
-
-#define LEDPin 2
-WiFiServer server(80);  //產生伺服器物件，並設定listen port = 80(括號內數字)
-
-
-void initWiFi()   //網路連線，連上熱點
-{
-  //加入連線熱點資料
-  wifiMulti.addAP("NCNUIOT", "12345678");  //加入一組熱點
-  wifiMulti.addAP("NCNUIOT2", "12345678");  //加入一組熱點
-  wifiMulti.addAP("ABC", "12345678");  //加入一組熱點
-
-  // We start by connecting to a WiFi network
-
-  Serial.println();
-  Serial.println();
-  Serial.print("Connecting to ");
-  //通訊埠印出 "Connecting to "
-  wifiMulti.run();  //多網路熱點設定連線
- while (WiFi.status() != WL_CONNECTED)     //還沒連線成功
-  {
-    // wifiMulti.run() 啟動多熱點連線物件，進行已經紀錄的熱點進行連線，
-    // 一個一個連線，連到成功為主，或者是全部連不上
-    // WL_CONNECTED 連接熱點成功
-    Serial.print(".");   //通訊埠印出
-    delay(500) ;  //停500 ms
-     wifiMulti.run();   //多網路熱點設定連線
+  // 等待連線成功
+  while (WiFi.status() != WL_CONNECTED) {  // 檢查連線狀態
+    Serial.print(".");   // 輸出進度
+    delay(500);  // 每隔500毫秒檢查一次
+    wifiMulti.run();  // 重試連線
   }
-    Serial.println("WiFi connected");   //通訊埠印出 WiFi connected
-    Serial.print("AP Name: ");   //通訊埠印出 AP Name:
-    APname = WiFi.SSID();
-    Serial.println(APname);   //通訊埠印出 WiFi.SSID()==>從熱點名稱
-    Serial.print("IP address: ");   //通訊埠印出 IP address:
-    ip = WiFi.localIP();
-    IPData = IpAddress2String(ip) ;
-    Serial.println(IPData);   //通訊埠印出 WiFi.localIP()==>從熱點取得IP位址
-    //通訊埠印出連接熱點取得的IP位址
-  
 
- 
-}
-void ShowInternet()   //秀出網路連線資訊
-{
-  Serial.print("MAC:") ;
-  Serial.print(MacData) ;
-  Serial.print("\n") ;
-  Serial.print("SSID:") ;
-  Serial.print(APname) ;
-  Serial.print("\n") ;
-  Serial.print("IP:") ;
-  Serial.print(IPData) ;
-  Serial.print("\n") ;    
-  //OledLineText(1,"MAC:"+MacData) ;
-  //OledLineText(2,"IP:"+IPData);
-  
-  //ShowMAC() ;
-  //ShowIP()  ;
-}
-//--------------------
-//----------Common Lib
-long POW(long num, int expo)
-{
-  long tmp =1 ;
-  if (expo > 0)
-  { 
-        for(int i = 0 ; i< expo ; i++)
-          tmp = tmp * num ;
-         return tmp ; 
-  } 
-  else
-  {
-   return tmp ; 
-  }
+  // 連線成功後輸出相關資訊
+  Serial.println("WiFi connected");  // 輸出成功訊息
+  Serial.print("AP Name: ");  // 輸出AP名稱
+  APname = WiFi.SSID();  // 取得AP名稱
+  Serial.println(APname);  // 輸出AP名稱
+  Serial.print("IP address: ");  // 輸出IP地址
+  ip = WiFi.localIP();  // 取得IP地址
+  IPData = IpAddress2String(ip);  // 將IP轉為字串
+  Serial.println(IPData);  // 輸出IP地址
 }
 
-
-String SPACE(int sp)
-{
-    String tmp = "" ;
-    for (int i = 0 ; i < sp; i++)
-      {
-          tmp.concat(' ')  ;
-      }
-    return tmp ;
+// 函式用於顯示網路連線資訊
+void ShowInternet() {
+  Serial.print("MAC:");  // 輸出MAC地址標籤
+  Serial.print(MacData);  // 輸出MAC地址
+  Serial.print("\n");  // 換行
+  Serial.print("SSID:");  // 輸出SSID標籤
+  Serial.print(APname);  // 輸出SSID
+  Serial.print("\n");  // 換行
+  Serial.print("IP:");  // 輸出IP標籤
+  Serial.print(IPData);  // 輸出IP地址
+  Serial.print("\n");  // 換行
 }
 
-
-String strzero(long num, int len, int base)
-{
-  String retstring = String("");
-  int ln = 1 ;
-    int i = 0 ; 
-    char tmp[10] ;
-    long tmpnum = num ;
-    int tmpchr = 0 ;
-    char hexcode[]={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'} ;
-    while (ln <= len)
-    {
-        tmpchr = (int)(tmpnum % base) ;
-        tmp[ln-1] = hexcode[tmpchr] ;
-        ln++ ;
-         tmpnum = (long)(tmpnum/base) ;
- 
-        
+// 數學函式，計算num的expo次方
+long POW(long num, int expo) {
+  long tmp = 1;
+  if (expo > 0) { 
+    for (int i = 0; i < expo; i++) {
+      tmp = tmp * num;  // 不斷乘以num
     }
-    for (i = len-1; i >= 0 ; i --)
-      {
-          retstring.concat(tmp[i]);
-      }
-    
+    return tmp;
+  } else {
+    return tmp;  // 若expo小於或等於0，返回1
+  }
+}
+
+// 生成指定長度的空格字串
+String SPACE(int sp) {
+  String tmp = "";
+  for (int i = 0; i < sp; i++) {
+    tmp.concat(' ');  // 加入空格
+  }
+  return tmp;
+}
+
+// 生成指定長度、指定進制的字串，補零至固定長度
+String strzero(long num, int len, int base) {
+  String retstring = String("");
+  int ln = 1;
+  int i = 0; 
+  char tmp[10];
+  long tmpnum = num;
+  char hexcode[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+  
+  while (ln <= len) {
+    int tmpchr = (int)(tmpnum % base);  // 取餘數
+    tmp[ln - 1] = hexcode[tmpchr];  // 取得對應的字元
+    ln++;
+    tmpnum = (long)(tmpnum / base);  // 取整數部分
+  }
+  
+  for (i = len - 1; i >= 0; i--) {
+    retstring.concat(tmp[i]);  // 反序字元並拼接
+  }
+  
   return retstring;
 }
 
-
-
-unsigned long unstrzero(String hexstr, int base)
-{
-  String chkstring  ;
-  int len = hexstr.length() ;
+// 將十六進制字串轉換為無符號整數
+unsigned long unstrzero(String hexstr, int base) {
+  int len = hexstr.length();
+  unsigned int tmp = 0;
+  unsigned long tmpnum = 0;
+  String hexcode = String("0123456789ABCDEF");
   
-    unsigned int i = 0 ;
-    unsigned int tmp = 0 ;
-    unsigned int tmp1 = 0 ;
-    unsigned long tmpnum = 0 ;
-    String hexcode = String("0123456789ABCDEF") ;
-    for (i = 0 ; i < (len ) ; i++)
-    {
-  //     chkstring= hexstr.substring(i,i) ; 
-      hexstr.toUpperCase() ;
-           tmp = hexstr.charAt(i) ;   // give i th char and return this char
-           tmp1 = hexcode.indexOf(tmp) ;
-      tmpnum = tmpnum + tmp1* POW(base,(len -i -1) )  ;
- 
-        
-    }
+  for (int i = 0; i < len; i++) {
+    hexstr.toUpperCase();  // 轉換為大寫
+    tmp = hexstr.charAt(i);  // 取得字元
+    unsigned int tmp1 = hexcode.indexOf(tmp);  // 取得字元在進制內的索引
+    tmpnum += tmp1 * POW(base, (len - i - 1));  // 計算進制值
+  }
+  
   return tmpnum;
 }
 
-String  print2HEX(int number) {
-  String ttt ;
-  if (number >= 0 && number < 16)
-  {
-    ttt = String("0") + String(number,HEX);
+// 輸出十六進制字串，若數字小於16則前面補0
+String print2HEX(int number) {
+  String ttt;
+  if (number >= 0 && number < 16) { 
+    ttt = String("0") + String(number, HEX);
+  } else {
+    ttt = String(number, HEX);
   }
-  else
-  {
-      ttt = String(number,HEX);
-  }
-  return ttt ;
-} 
-String GetMacAddress()    //取得網路卡編號
-{
-  // the MAC address of your WiFi shield
-  String Tmp = "" ;
+  return ttt;
+}
+
+// 取得網路卡MAC地址
+String GetMacAddress() {
+  String Tmp = "";
   byte mac[6];
+  WiFi.macAddress(mac);  // 取得MAC地址
   
-  // print your MAC address:
-  WiFi.macAddress(mac);
-  for (int i=0; i<6; i++)
-    {
-        Tmp.concat(print2HEX(mac[i])) ;
-    }
-    Tmp.toUpperCase() ;
-  return Tmp ;
-}
-
-void ShowMAC()  //於串列埠印出網路卡號碼
-{
-  
-  Serial.print("MAC Address:(");  //印出 "MAC Address:("
-  Serial.print(MacData) ;   //印出 MacData 變數內容
-  Serial.print(")\n");    //印出 ")\n"
-
-
-}
-String IpAddress2String(const IPAddress& ipAddress)
-{
-  //回傳ipAddress[0-3]的內容，以16進位回傳
-  return String(ipAddress[0]) + String(".") +\
-  String(ipAddress[1]) + String(".") +\
-  String(ipAddress[2]) + String(".") +\
-  String(ipAddress[3])  ; 
-}
-
-
-
-
-String chrtoString(char *p)
-{
-    String tmp ;
-    char c ;
-    int count = 0 ;
-    while (count <100)
-    {
-        c= *p ;
-        if (c != 0x00)
-          {
-            tmp.concat(String(c)) ;
-          }
-          else
-          {
-              return tmp ;
-          }
-       count++ ;
-       p++;
-       
-    }
-}
-
-
-void CopyString2Char(String ss, char *p)
-{
-         //  sprintf(p,"%s",ss) ;
-
-  if (ss.length() <=0)
-      {
-           *p =  0x00 ;
-          return ;
-      }
-    ss.toCharArray(p, ss.length()+1) ;
-   // *(p+ss.length()+1) = 0x00 ;
-}
-
-boolean CharCompare(char *p, char *q)
-  {
-      boolean flag = false ;
-      int count = 0 ;
-      int nomatch = 0 ;
-      while (flag <100)
-      {
-          if (*(p+count) == 0x00 or *(q+count) == 0x00)
-            break ;
-          if (*(p+count) != *(q+count) )
-              {
-                 nomatch ++ ; 
-              }
-             count++ ; 
-      }
-     if (nomatch >0)
-      {
-        return false ;
-      }
-      else
-      {
-        return true ;
-      }
-      
-        
+  for (int i = 0; i < 6; i++) {
+    Tmp.concat(print2HEX(mac[i]));  // 將每個MAC位元組轉為十六進制
   }
+  
+  Tmp.toUpperCase();  // 轉換為大寫
+  return Tmp;
+}
 
+// 在串列埠顯示MAC地址
+void ShowMAC() {
+  Serial.print("MAC Address:(");  // 印出標籤
+  Serial.print(MacData);   // 印出MAC地址
+  Serial.print(")\n");  // 換行
+}
 
-String Double2Str(double dd,int decn)
+// IP地址轉換函式，將4個字節的IP轉為字串
+String IpAddress2String(const IPAddress& ipAddress) {
+  return String(ipAddress[0]) + "." +
+         String(ipAddress[1]) + "." +
+         String(ipAddress[2]) + "." +
+         String(ipAddress[3]);
+}
+
+// 將字元指標轉換為字串
+String chrtoString(char *p)   // 將字元指標轉為字串
 {
-    int a1 = (int)dd ;
-    int a3 ;
-    if (decn >0)
-    {    
-        double a2 = dd - a1 ;
-        a3 = (int)(a2 * (10^decn));
-    }
-    if (decn >0)
+  String tmp;
+  char c;
+  int count = 0;
+  while (count < 100)
+  {
+    c = *p;
+    if (c != 0x00)
     {
-        return String(a1)+"."+ String(a3) ;
+      tmp.concat(String(c));
     }
     else
     {
-      return String(a1) ;
+      return tmp;
     }
-  
+    count++;
+    p++;
+  }
 }

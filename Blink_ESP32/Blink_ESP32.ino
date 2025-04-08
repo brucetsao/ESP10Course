@@ -1,4 +1,4 @@
-
+// int LedPin = 2;
 #define LedPin 2
 //  define宣告  LedPin  接為 2
 
@@ -9,6 +9,9 @@ void setup() //程式 起始區
   pinMode(LedPin, OUTPUT);    
   //宣告腳位模式：pinMode（腳位 , 模式）;
   // 設計腳位狀態，設定LedPin(2)為輸出狀態(OUTPUT)
+  //設定腳位預設值
+    digitalWrite(LedPin, LOW);    // turn the LED off by making the voltage LOW
+     //數位寫入：digitalWrite（腳位 , 電位）
 }
 
 // the loop function runs over and over again forever

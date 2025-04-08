@@ -1,0 +1,50 @@
+#define Ledon HIGH    //打開LED 燈的電位設定
+#define Ledoff LOW    //關閉LED 燈的電位設定
+#define WifiLed 2   // 連線WIFI 成功之指示燈
+#define AccessLED 15    // 系統運作之指示燈
+#define BeepPin 4   // 控制器之嗡鳴器
+
+//--------------GPIO Function
+
+void TurnonWifiLed()    //打開Wifi連接燈號
+{
+  digitalWrite(WifiLed, Ledon) ;
+}
+
+void TurnoffWifiLed()   //關閉Wifi連接燈號
+{
+  digitalWrite(WifiLed, Ledoff) ;
+}
+
+void AccessOn()   //打開動作燈號
+{
+  digitalWrite(AccessLED, Ledon) ;
+}
+
+void AccessOff()    //關閉動作燈號
+{
+  digitalWrite(AccessLED, Ledoff) ;
+}
+void BeepOn()   //打開嗡鳴器
+{
+  digitalWrite(BeepPin, Ledon) ;
+}
+void BeepOff()  //關閉嗡鳴器
+{
+  digitalWrite(BeepPin, Ledoff) ;
+}
+void initGPIO()   //初始化ALL GPIO Mode
+{
+//  #define WifiLed 2   // 連線WIFI 成功之指示燈
+// #define AccessLED 15    // 系統運作之指示燈
+// #define BeepPin 4   // 控制器之嗡鳴器
+    pinMode(WifiLed,OUTPUT) ;
+    pinMode(AccessLED,OUTPUT) ;
+    pinMode(BeepPin,OUTPUT) ;  
+
+   TurnoffWifiLed();   //關閉Wifi連接燈號 
+   AccessOff();    //關閉動作燈號     
+   BeepOff();  //關閉嗡鳴器 
+}
+
+

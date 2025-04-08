@@ -1,0 +1,76 @@
+/***************************************************
+  這是 HTU21D-F 溫溼度感測器的範例程式
+  專為 Adafruit 的 HTU21D-F 感測器而設計
+  ----> https://www.adafruit.com/products/1899
+  這些感測器使用 I2C 介面進行通訊，需兩個腳位
+  進行連接
+ ****************************************************/
+/*
+
+這段 Arduino C 程式碼範例
+展示如何使用 HTU21D-F 溫溼度感測器，
+透過 I2C 介面與感測器通信，
+並將讀取的溫度和濕度資料顯示在 OLED 螢幕上。
+這段程式碼展示了如何初始化 HTU21DF 溫溼度感測器，
+讀取溫度和濕度，
+並將其顯示在 OLED 螢幕上。
+它還包括將溫度和濕度值轉換為字串，
+以便在串列埠上顯示。
+
+*/
+
+
+#include <Wire.h>   // I2C 通訊函式庫
+#include "Adafruit_HTU21DF.h"  // Adafruit 的 HTU21DF 溫溼度感測器函式庫
+
+// 感測器連接方式
+// Vin 連接至 3-5VDC
+// GND 連接至地
+// SCL 連接至 I2C 時鐘腳位（UNO 的 A5，ESP32 的 GPIO 22）
+// SDA 連接至 I2C 資料腳位（UNO 的 A4，ESP32 的 GPIO 21）
+
+char tmpvalue[100];  // 用於存儲臨時值的字元陣列
+double Tvalue, Hvalue;  // 用於存儲溫度和濕度值的變數
+Adafruit_HTU21DF htu = Adafruit_HTU21DF();  // 建立 HTU21DF 感測器的實例
+
+// 初始化 HTU21D 溫溼度感測器
+void initHTU21D() {
+    if (!htu.begin()) {  // 如果感測器未成功初始化
+        Serial.println("Couldn't find sensor!");  // 印出 "Couldn't find sensor!"
+        while (1);  // 如果找不到感測器，進入無限迴圈
+    }
+}
+
+// 讀取 HTU21D 溫溼度感測器的溫度
+float ReadTemperature() {
+    return htu.readTemperature();  // 回傳讀取的溫度
+}
+
+// 讀取 HTU21D 溫溼度感測器的濕度
+float ReadHumidity() {
+    return htu.readHumidity();  // 回傳讀取的濕度
+}
+
+// 將溫度資訊顯示在 OLED 螢幕上
+void printTemperatureonOled(float t) {
+    sprintf(tmpvalue, "%5.1f", t);  // 格式化溫度為字串
+    Serial.print("Data:");  // 印出資料標籤
+    Serial.print(tmpvalue);  // 印出格式化的溫度
+    Serial.print("\n");
+
+    _TPrint(1, 15, "Temp:");  // 在 OLED 上顯示 "Temp:" 標籤
+    _TPrint(50, 15, tmpvalue);  // 顯示溫度值
+    _TPrint(100, 15, ".C");  // 顯示攝氏符號
+}
+
+// 將濕度資訊顯示在 OLED 螢幕上
+void printHumidityonOled(float h) {
+    sprintf(tmpvalue, "%5.1f", h);  // 格式化濕度為字串
+    Serial.print("Data:");
+    Serial.print(tmpvalue);  // 印出格式化的濕度
+    Serial.print("\n");
+
+    _TPrint(1, 31, "Humid:");  // 在 OLED 上顯示 "Humid:" 標籤
+    _TPrint(60, 31, tmpvalue);  // 顯示濕度值
+    _TPrint(110, 31, "%");  // 顯示百分比符號
+}
