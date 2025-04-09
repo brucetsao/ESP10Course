@@ -1,0 +1,6 @@
+<script>
+// 這一區
+	// php would run before javascript
+	// better solution to catch error
+	window.location = '/fcu/'
+</script>";

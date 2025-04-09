@@ -1,0 +1,43 @@
+<form id='form1' name='form1' method='post' action='lighting.php'><p><img src='/fcu/images/god/%d.jpg' width='150' height='195' /></p><p>香主名稱<label for='textfield'></label><input type='text' name='t1' id='t1' value='%s' /></p><p>香主生辰<input type='text' name='t2' id='t2' value='%s'/></p><p><input type='submit' name='button' id='button' value='點燈' /></p></form>
+
+
+
+<form id='form1' name='form1' method='post' action='lighting.php'>
+<p><img src='/fcu/images/god/%d.jpg' width='150' height='195' /></p>
+<p>香主名稱<label for='textfield'></label>
+<input type='text' name='t1' id='t1' value='%s' /></p>
+<p>香主生辰
+<input type='text' name='t2' id='t2' value='%s'/></p>
+<p><input type='submit' name='button' id='button' value='點燈' /></p>
+</form>
+
+	
+ "
+ <td><form id='form1' name='form1' method='post' action='lighting.php?sid=%d'>
+ <p><div align = 'center'><img src='/fcu/images/god/%d.jpg' width='150' height='195' /></div></p>
+ <div align = 'center'><p>%s</p>
+ </div><p>香主名稱<label for='textfield'></label>
+ <input type='text' name='t1' id='t1' value='%s' /></p>
+ <p>香主生辰
+ <input type='text' name='t2' id='t2' value='%s'/></p>
+ <p><div align = 'center'><input type='submit' name='button' id='button' value='點燈' /></div></p>
+ </form></td>" ;
+	
+	
+update fcu.Ledsitelist SET donater = '%s',dbirthday = '%s'  WHERE Ledsitelist.id = %d;	
+
+
+Gods
+create view  VLedtype as select a.* , b.name as locname from LC.Ledtype as a left join LC.Temple as b on a.location = b.id 
+
+create view  VLedtype as select a.* , b.name as locname from fcu.Ledtype as a left join fcu.Temple as b on a.location = b.id 
+
+
+select a.* , b.name as Glocname from LC.Gods as a left join LC.Temple as b on a.location = b.id 
+
+Gods
+
+create view  VGods as select a.* , b.name as Glocname from LC.Gods as a left join LC.Temple as b on a.location = b.id 
+
+
+create view  VGods as select a.* , b.name as Glocname from fcu.Gods as a left join fcu.Temple as b on a.location = b.id 

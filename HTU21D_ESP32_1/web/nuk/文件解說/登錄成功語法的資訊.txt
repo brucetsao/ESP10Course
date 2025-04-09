@@ -1,0 +1,7 @@
+			$_SESSION['loginok'] = "0/1";
+			//登錄成功與否  0=fail, 1= success
+
+		$_SESSION['usr']=$row["user"];		//取出使用者帳號
+		$_SESSION['username']=$row["username"];		//取出使用者名稱
+		$_SESSION['usrid']=$row["id"];		//取出使用者ID
+		

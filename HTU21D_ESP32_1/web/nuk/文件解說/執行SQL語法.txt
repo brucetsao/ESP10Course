@@ -1,0 +1,6 @@
+  //檢查帳號密碼是否正確
+  $sql = "select * from fcu.users Where account = '%s' AND password = '%s'";
+  // 上面放標準SQL語法的命令 ，並把要比較的內容，用%s，%d...方法填入
+  $qrystr = sprintf($sql,$account,$password) ;
+   //把要比較的內容，用sprintf()，用變數方法填入
+  $result=mysqli_query($link,$qrystr);		//執行sql語法 

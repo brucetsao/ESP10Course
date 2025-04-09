@@ -1,0 +1,18 @@
+
+
+INSERT INTO `gods` (`id`, `name`, `pic`, `location`, `crdtime`) VALUES ('', 'aaaaa', '太歲星君.jpg', '01', current_timestamp());
+
+
+
+insert into  fcu.gods (name,pic,location) values ('%s', '%s', '%s');
+
+
+
+ALTER TABLE `gods` AUTO_INCREMENT=8;
+
+
+select a.*, b.name as locationname  from fcu.gods as a left join fcu.temple as b on a.location = b.id 
+
+create view Vgods as select a.*, b.name as locationname  from fcu.gods as a left join fcu.temple as b on a.location = b.id 
+ 
+

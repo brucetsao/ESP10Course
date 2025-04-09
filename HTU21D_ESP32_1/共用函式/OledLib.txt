@@ -1,0 +1,168 @@
+/*
+這個程式碼包含了各種與 OLED 顯示器互動的函數，
+用於設定、繪圖和操作顯示器。
+這些註解解釋了每個函數的目的和參數，
+並說明了它們如何與 OLED 顯示器互動。
+這有助於理解程式碼的結構，
+並提供一個清晰的參考。
+*/
+/*
+    使用本模組，必須在 setup() 中加入以下內容，完成：
+    1. 啟動 OLED 128x32 顯示模組
+    2. 清除之前的畫圖緩衝記憶體
+    3. 設定字形
+*/
+void initOLED() {   // 初始化 OLED 顯示模組
+   if (!u8g2.begin()) {  // 如果初始化失敗
+      Serial.println("Couldn't find OLED!");  // 輸出錯誤訊息
+      while (1);  // 停止程式，進入無窮迴圈
+   }
+   Serial.println("init OLED successful!");  // 初始化成功的訊息
+   _clearBuffer();  // 清除緩衝記憶體
+   _setFont(u8g2_font_logisoso16_tf);  // 設定字形
+}
+
+// 引入所需的庫
+#include <Arduino.h>  // Arduino 基本庫
+#include <U8g2lib.h>  // U8g2 圖形庫
+#include <SPI.h>  // SPI 通訊庫
+#include <Wire.h>  // I2C 通訊庫
+
+// 定義與 OLED 互動的函數
+void _update() {  // 更新 OLED 顯示器
+   u8g2.updateDisplay();  // 刷新顯示內容
+}
+
+void _updateBuffer() {  // 更新緩衝記憶體
+   u8g2.sendBuffer();  // 將緩衝區的內容發送到 OLED 顯示器
+}
+
+void _setI2CAddress(int adr) {  // 設定 I2C 位址
+   u8g2.setI2CAddress(adr);  // 設定 I2C 地址
+}
+
+void _initDisplay() {  // 初始化顯示器
+   u8g2.initDisplay();  // 開啟顯示器
+}
+
+void _setCursor(int x, int y) {  // 設定游標位置
+   u8g2.setCursor(x, y);  // 設定繪圖或文字開始的座標
+}
+
+void _setDrawColor(int color) {  // 設定繪圖顏色
+   /*
+   0: 實心，背景為白色
+   1: 實心，背景為黑色
+   2: XOR 模式
+   */
+   u8g2.setDrawColor(color);  // 設定繪圖的顏色
+}
+
+int _getWidth() {  // 取得 OLED 顯示器的寬度
+   return u8g2.getDisplayWidth();  // 回傳寬度
+}
+
+int _getHeight() {  // 取得 OLED 顯示器的高度
+   return u8g2.getDisplayHeight();  // 回傳高度
+}
+
+int _getMaxCharWidth() {  // 取得最大字元寬度
+   return u8g2.getMaxCharWidth();  // 回傳最大字元寬度
+}
+
+int _getMaxCharHeight() {  // 取得最大字元高度
+   return u8g2.getMaxCharHeight();  // 回傳最大字元高度
+}
+
+int _getCharWidth() {  // 取得單個字元的寬度
+   return u8g2.getStrWidth(" ");  // 回傳一個空格的寬度
+}
+
+int _getUTF8Width() {  // 取得 UTF-8 編碼的字元寬度
+   return u8g2.getUTF8Width(" ");  // 回傳 UTF-8 空格的寬度
+}
+
+void _clearDisplay() {  // 清除顯示器內容
+   u8g2.clearDisplay();  // 清除顯示器
+   u8g2.sendBuffer();  // 將緩衝區發送到顯示器
+}
+
+void _setContrast(int t) {  // 設定 OLED 顯示器的對比度
+   u8g2.setContrast(t);  // 設定對比度
+}
+
+void _clearOled() {  // 清除顯示器並更新
+   u8g2.clear();  // 清除顯示器
+   u8g2.sendBuffer();  // 更新顯示器
+}
+
+void _clearBuffer() {  // 清除緩衝記憶體
+   u8g2.clearBuffer();  // 清除記憶體緩衝
+   u8g2.sendBuffer();  // 將清除後的緩衝區發送到顯示器
+}
+
+void _Box(int x, int y, int w, int h) {  // 繪製方形
+   u8g2.drawBox(x, y, w, h);  // 在指定座標和尺寸繪製方形
+}
+
+void _Circle(int x, int y, int r) {  // 繪製圓形
+   u8g2.drawCircle(x, y, r, U8G2_DRAW_ALL);  // 在指定座標和半徑繪製圓形
+}
+
+void _Ellipse(int x, int y, int rx, int ry) {  // 繪製橢圓
+   u8g2.drawEllipse(x, y, rx, ry, U8G2_DRAW_ALL);  // 繪製橢圓
+}
+
+void _FilledEllipse(int x, int y, int rx, int ry) {  // 繪製填充的橢圓
+   u8g2.drawFilledEllipse(x, y, rx, ry, U8G2_DRAW_ALL);  // 繪製填充橢圓
+}
+
+void _Triangle(int x1, int y1, int x2, int y2, int x3, int y3) {  // 繪製三角形
+   u8g2.drawTriangle(x1, y1, x2, y2, x3, y3);  // 繪製三角形
+}
+
+void _HLine(int x, int y, int l) {  // 繪製水平線
+   u8g2.drawHLine(x, y, l);  // 繪製指定長度的水平線
+}
+
+void _VLine(int x, int y, int l) {  // 繪製垂直線
+   u8g2.drawVLine(x, y, l);  // 繪製指定長度的垂直線
+}
+
+void _Line(int x1, int y1, int x2, int y2) {  // 繪製線段
+   u8g2.drawLine(x1, y1, x2, y2);  // 繪製線段
+}
+
+void _Point(int x, int y) {  // 繪製點
+   u8g2.drawPixel(x, y);  // 在指定座標繪製點
+}
+
+void _setFont(const uint8_t *font_8x8) {  // 設定字體
+   u8g2.setFont(font_8x8);  // 設定指定的字體
+}
+
+void _setFontDirection(int dir) {  // 設定字體方向
+   u8g2.setFontDirection(dir);  // 0: 左到右, 1: 上到下, 2: 右到左, 3: 下到上
+}
+
+void _setFontMode(int is_transparent) {  // 設定字體透明度
+   u8g2.setFontMode(is_transparent);  // 0: 實心, 1: 透明
+}
+
+void _TPrint(int x, int y,  const char *ss) {  // 指定位置印刷文字
+   u8g2.drawStr(x, y, ss);  // 在指定座標印刷文字
+}
+
+void _TextPrint(int x, int y,  const char *ss, const uint8_t *font_8x8) {  // 指定字體印刷文字
+   u8g2.setFont(font_8x8);  // 設定字體
+   u8g2.drawStr(x, y, ss);  // 在指定座標印刷文字
+}
+
+void _UTF8Print(int x, int y,  const char *ss, const uint88_t *font_8x8) {  // 指定字體印刷 UTF-8 文字
+   u8g2.setFont(font_8x8);  // 設定字體
+   u8g2.drawStr(x, y, ss);  // 在指定座標印刷 UTF-8 文字
+}
+
+void _Print(const char *ss) {  // 印刷文字
+   u8g2.print(ss);  // 印刷文字到 OLED 顯示器
+}

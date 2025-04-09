@@ -1,7 +1,8 @@
 //-------wifi declare
 #include "commlib.h"     // 共用函式模組
-#define WiFiPin 3   //控制板上WIFI指示燈腳位
-#define AccessPin 4 //控制板上連線指示燈腳位
+#include "esp_mac.h"  // required - exposes esp_mac_type_t values
+#define WiFiPin 2   //控制板上WIFI指示燈腳位
+#define AccessPin 15 //控制板上連線指示燈腳位
 #define Ledon 1   //LED燈亮燈控制碼
 #define Ledoff 0  //LED燈滅燈控制碼
 
@@ -19,12 +20,16 @@ WiFiMulti wifiMulti;    //產生多熱點連線物件
   IPAddress ip ;    //網路卡取得IP位址之原始型態之儲存變數
   String IPData ;   //網路卡取得IP位址之儲存變數
   String APname ;   //網路熱點之儲存變數
-  String APname ;   //網路熱點之儲存變數
   String MacData ;   //網路卡取得網路卡編號之儲存變數 
+  String BTMacData;   // 用於儲存BlueToothMAC地址
   long rssi ;   //網路連線之訊號強度'之儲存變數
   int status = WL_IDLE_STATUS;  //取得網路狀態之變數
   
-
+void WiFion();//控制板上Wifi 指示燈打開
+void WiFioff();//控制板上Wifi 指示燈關閉
+void ACCESSon(); //控制板上連線指示燈打開
+void ACCESSoff();//控制板上連線指示燈關閉
+void initGPIO(); //設定使用之所有GPIO腳位
 String IpAddress2String(const IPAddress& ipAddress) ;  //轉換ipaddress變數形態到字串型態
 String GetMacAddress() ;   //取得網路卡編號
 void ShowInternet() ;  //秀出網路連線資訊
@@ -34,7 +39,7 @@ String GetESPBlueToothMac();  // 取得Bluetooth卡的MAC地址（新版ESP32方
 String GetESPMac();  // 取得WiFi卡的MAC地址
 void ShowMAC() ;// 在串列埠顯示MAC地址
 void ShowBTMAC(); // 在串列埠中印出藍芽MAC地址
-
+void initAll() ;   //初始化系統
 
 
 
@@ -49,17 +54,17 @@ void initAll()    //初始化系統
     Serial.println("System Start"); //印出 "System Start"
    //通訊埠印出 "System Start"
    //-----------------------------------------
-
+  initGPIO(); //設定使用之所有GPIO腳位
 }
 
 
 void initWiFi()   //網路連線，連上熱點
 { 
   
-  MacData = GetMacAddress(); //取得mac address
+
   //加入連線熱點資料
   wifiMulti.addAP("lab309", "");  //加入一組熱點
-  wifiMulti.addAP("NCNUIOT", "12345678");  //加入一組熱點
+  wifiMulti.addAP("NCNUIOT", "0123456789");  //加入一組熱點
   wifiMulti.addAP("NUKIOT", "iot12345");  //加入一組熱點
  // wifiMulti.addAP("NUKIOT", "iot12345");  //加入一組熱點
 
@@ -89,6 +94,7 @@ void initWiFi()   //網路連線，連上熱點
     IPData = IpAddress2String(ip) ;
     Serial.println(IPData);   //通訊埠印出 WiFi.localIP()==>從熱點取得IP位址
     //通訊埠印出連接熱點取得的IP位址
+    WiFion(); //控制板上Wifi 指示燈打開
     ShowInternet() ;  //秀出網路連線資訊
     
  
@@ -114,7 +120,6 @@ void ShowInternet()   //秀出網路連線資訊
 //---------- 通用函式
 
 // 取得實體WiFi卡的MAC地址（新版ESP32方式）
-
 String getDefaultMacAddress() 
 {
   String mac = "";  // 用於存儲MAC地址的字串
@@ -194,7 +199,7 @@ String GetESPBlueToothMac()  // 取得Bluetooth卡的MAC地址（新版ESP32方�
 
 String GetESPMac()  // 取得WiFi卡的MAC地址
 {  // 取得WiFi卡的MAC地址
-   String mac = "";  // 用於存儲MAC地址的字串
+   //String mac = "";  // 用於存儲MAC地址的字串
   uint8_t baseMac[6];  // 建立一個陣列來存儲MAC地址（6個字節）
 
   // 使用ESP32官方函式 `esp_read_mac` 來讀取WiFi的MAC地址
@@ -212,8 +217,8 @@ String GetESPMac()  // 取得WiFi卡的MAC地址
 //      %02X 代表 將一個字節轉換為兩位數的十六進位格式，例如 0A、FF。
 //      這裡的格式是 不含冒號的純HEX格式，如：AABBCCDDEEFF。 
      
-    mac = buffer;  // 將格式化後的字串存入 `mac`
-
+    
+    String mac(buffer); // 將格式化後的字串存入 `mac`
   mac.toUpperCase();  // 轉為大寫
   return mac;  // 返回MAC地址字串
 }
@@ -251,11 +256,20 @@ Serial.print(")\n");  // 換行
 
 
 // IP地址轉換函式，將4個字節的IP轉為字串
-String IpAddress2String(const IPAddress& ipAddress) {
+String IpAddress2String(const IPAddress& ipAddress) 
+{
   return String(ipAddress[0]) + "." +
          String(ipAddress[1]) + "." +
          String(ipAddress[2]) + "." +
          String(ipAddress[3]);  //回傳內容
+}
+
+void initGPIO() //設定使用之所有GPIO腳位
+{
+  pinMode(WiFiPin,OUTPUT) ; //設定WIFI 指示燈為輸出高低電位
+  pinMode(AccessPin,OUTPUT) ; //設定動作指示燈為輸出高低電位
+  WiFioff();//控制板上Wifi 指示燈關閉
+  ACCESSoff();//控制板上連線指示燈關閉
 }
 
 void WiFion()//控制板上Wifi 指示燈打開

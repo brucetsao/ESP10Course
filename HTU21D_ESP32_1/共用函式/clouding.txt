@@ -1,0 +1,61 @@
+//http://iot.arduino.org.tw:8888/bigdata/dhtdata/dhDatatadd.php?MAC=AABBCCDDEEFF&T=34&H=34
+//char iotserver[] = "iot.arduino.org.tw";    // name address for Google (using DNS)
+  // NCNU Clouding Server DNS name
+//int iotport = 8888 ;
+// nuk.arduino.org.tw Clouding Server port : 8888
+// Initialize the Ethernet client library
+// with the IP address and port of the server
+// that you want to connect to (port 80 is default for HTTP):
+/*
+這段 Arduino C 程式碼
+旨在建立與遠端伺服器的 HTTP 連線，
+並將溫濕度感測器的資料傳送到雲端。
+這個程式碼中的主要功能是建立與伺服器的 HTTP 連線，
+並將感測器資料作為 GET 請求的參數傳送到伺服器。
+該函數在建立 HTTP 請求的字串時，
+使用了 MAC 地址、溫度和濕度作為參數。
+連線成功後，
+程式會將 HTTP 請求發送到伺服器，
+然後斷開連線。
+這種方式可以用於物聯網 (IoT) 裝置與遠端伺服器進行通訊。
+
+*/
+
+
+// 定義連線到伺服器的 DNS 名稱
+char iotserver[] = "iot.arduino.org.tw";  // 遠端伺服器的 DNS 名稱
+int iotport = 8888;  // 伺服器的埠號，8888 是預定義的埠號
+
+// 字串組成部分，用於建立 HTTP 請求
+String strGet = "GET /dhtdata/dhDatatadd.php";  // HTTP 請求方法和路徑
+String strHttp = " HTTP/1.1";  // HTTP 版本
+String strHost = "Host: iot.arduino.org.tw";  // HTTP Host 標頭
+String connectstr;  // 用於組成 RESTful API 的請求字串
+
+// 傳送資料到雲端伺服器的函數
+void SendtoClouding()  // 傳送感測器資料到雲端
+{
+    // 建立 HTTP GET 請求的參數部分
+    connectstr = "?MAC=" + MacData + "&T=" + String(Tvalue) + "&H=" + String(Hvalue);  
+    // connectstr 包含 MAC 地址、溫度 (T)、濕度 (H) 的查詢參數
+    Serial.println(connectstr);  // 輸出組成的參數字串，供調試
+
+    // 嘗試與伺服器建立連線
+    if (client.connect(iotserver, iotport))  // 與伺服器建立連線
+    {
+        // 如果連線成功，建立 HTTP 請求
+        Serial.println("Make a HTTP request ...");  // 輸出調試資訊
+        String strHttpGet = strGet + connectstr + strHttp;  // 組成完整的 HTTP 請求
+        Serial.println(strHttpGet);  // 輸出完整的 HTTP 請求字串，供調試
+
+        client.println(strHttpGet);  // 傳送 HTTP 請求
+        client.println(strHost);  // 傳送 HTTP Host 標頭
+        client.println();  // 結束 HTTP 請求
+    }
+
+    // 確認連線已建立後，斷開連線
+    if (client.connected()) 
+    { 
+        client.stop();  // 與伺服器斷開連線
+    }
+}

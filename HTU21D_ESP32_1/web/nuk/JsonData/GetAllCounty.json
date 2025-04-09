@@ -1,0 +1,90 @@
+{
+  "DataName": "County",
+  "Amount": 21,
+  "Datalist": [
+    {
+      "CountyID": "13",
+      "CountyName": "南投縣"
+    },
+    {
+      "CountyID": "09",
+      "CountyName": "嘉義市"
+    },
+    {
+      "CountyID": "17",
+      "CountyName": "嘉義縣"
+    },
+    {
+      "CountyID": "03",
+      "CountyName": "基隆市"
+    },
+    {
+      "CountyID": "07",
+      "CountyName": "宜蘭縣"
+    },
+    {
+      "CountyID": "20",
+      "CountyName": "屏東縣"
+    },
+    {
+      "CountyID": "14",
+      "CountyName": "彰化縣"
+    },
+    {
+      "CountyID": "06",
+      "CountyName": "新北市"
+    },
+    {
+      "CountyID": "15",
+      "CountyName": "新竹市"
+    },
+    {
+      "CountyID": "10",
+      "CountyName": "新竹縣"
+    },
+    {
+      "CountyID": "08",
+      "CountyName": "桃園市"
+    },
+    {
+      "CountyID": "23",
+      "CountyName": "澎湖縣"
+    },
+    {
+      "CountyID": "02",
+      "CountyName": "臺中市"
+    },
+    {
+      "CountyID": "01",
+      "CountyName": "臺北市"
+    },
+    {
+      "CountyID": "04",
+      "CountyName": "臺南市"
+    },
+    {
+      "CountyID": "22",
+      "CountyName": "臺東縣"
+    },
+    {
+      "CountyID": "21",
+      "CountyName": "花蓮縣"
+    },
+    {
+      "CountyID": "11",
+      "CountyName": "苗栗縣"
+    },
+    {
+      "CountyID": "99",
+      "CountyName": "金門縣"
+    },
+    {
+      "CountyID": "16",
+      "CountyName": "雲林縣"
+    },
+    {
+      "CountyID": "05",
+      "CountyName": "高雄市"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+insert into fcu.product (productno, name, ename, maker, price, unit, weight, package) values 
+						('APPLE01', '蘋果手機', 'IPHONE 12', '蘋果公司', '20000', '01', '300', '01');
+						
+insert into fcu.product (productno, name, ename, maker, price, unit, weight, package) values 
+						('%s', '%s', '%s', '%s', %f, '%s', %d, '%s');						
+						
+insert into fcu.product (productno, name, ename, maker, price, weight,unit, package) values ('%s', '%s', '%s', '%s', %f,  %d, '%s','%s');						
+						

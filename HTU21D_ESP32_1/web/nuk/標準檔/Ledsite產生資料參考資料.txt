@@ -1,0 +1,42 @@
+table Ledsite
+
+id 
+name 
+Ledtype
+godtype
+level
+amount
+crtdatetime
+
+Ledsitelist
+id
+siteid
+no
+donater
+dbirthday
+dueday
+crtdatetime
+
+
+select a.*, b.name as lname, b.price as price, b.content, c.name as gname from LC.Ledsite as a left join LC.Ledtype as b on a.ledtype = b.id 
+							left join LC.Gods as c on a.godtype = c.id
+							
+							
+create view VLedsite as select a.*, b.name as lname, b.price as price, b.content, c.name as gname from LC.Ledsite as a left join LC.Ledtype as b on a.ledtype = b.id 
+							left join LC.Gods as c on a.godtype = c.id
+							
+							
+	create view VLedsite as select a.*, b.name as lname, b.price as price, b.content, c.name as gname from fcu.Ledsite as a left join fcu.Ledtype as b on a.ledtype = b.id 
+							left join fcu.Gods as c on a.godtype = c.id
+						
+						
+	create view VLedsite as select a.*, b.name as lname, b.price as price, b.content,b.locname, c.name as gname, c.glocname from fcu.Ledsite as a left join fcu.VLedtype as b on a.ledtype = b.id 
+							left join fcu.VGods as c on a.godtype = c.id
+						
+						
+insert into fcu.Ledsitelistlog ( year, siteid, no, donater, dbirthday, dueday) values ('%s', %d, '%s', '%s', '%s', '%s');
+
+
+
+
+						

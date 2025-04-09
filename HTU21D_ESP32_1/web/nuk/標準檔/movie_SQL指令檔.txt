@@ -1,0 +1,17 @@
+insert into fcu.movie 
+(mid, schedule, director, duration, actor, lang, mName, movietype, introduction, playstartdate, grading`)
+ VALUES 
+('101', '01', 'aaaa', '100', 'bbbb', '1', 'cccc', '1', 'dddd', '2022/7/26', '01');
+
+//-------------------------
+
+insert into fcu.movie 
+(mid, schedule, director, duration, actor, lang, mName, movietype, introduction, playstartdate, grading`)
+ VALUES 
+('%s', '%s', '%s', %d, '%s', %d, '%s', %d, '%s', '%s', '%s');
+
+//-------------------------
+
+
+insert into fcu.movie (mid, schedule, director, duration, actor, lang, mName, movietype, introduction, playstartdate, grading`) VALUES ('%s', '%s', '%s', %d, '%s', %d, '%s', %d, '%s', '%s', '%s');
+

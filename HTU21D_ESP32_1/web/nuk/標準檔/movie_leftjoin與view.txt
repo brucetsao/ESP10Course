@@ -1,0 +1,12 @@
+select a.*, b.name , c.language, d.mtype from movie as a  
+left join  schedule as  b  ON a.schedule = b.id  
+left join language as  c ON a.lang = c.id 
+left join movietype as  d ON a.movietype = d.id 
+ORDER BY a.mName;
+
+create view Vmovie as 
+select a.*, b.name , c.language, d.mtype from movie as a  
+left join  schedule as  b  ON a.schedule = b.id  
+left join language as  c ON a.lang = c.id 
+left join movietype as  d ON a.movietype = d.id 
+ORDER BY a.mName;

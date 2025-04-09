@@ -1,0 +1,362 @@
+[
+  {
+    "cityid": "07",
+    "cityname": "宜蘭縣",
+    "townid": "084",
+    "townname": "三星鄉"
+  },
+  {
+    "cityid": "07",
+    "cityname": "宜蘭縣",
+    "townid": "082",
+    "townname": "五結鄉"
+  },
+  {
+    "cityid": "07",
+    "cityname": "宜蘭縣",
+    "townid": "087",
+    "townname": "冬山鄉"
+  },
+  {
+    "cityid": "07",
+    "cityname": "宜蘭縣",
+    "townid": "093",
+    "townname": "南澳鄉"
+  },
+  {
+    "cityid": "07",
+    "cityname": "宜蘭縣",
+    "townid": "074",
+    "townname": "員山鄉"
+  },
+  {
+    "cityid": "07",
+    "cityname": "宜蘭縣",
+    "townid": "072",
+    "townname": "壯圍鄉"
+  },
+  {
+    "cityid": "07",
+    "cityname": "宜蘭縣",
+    "townid": "081",
+    "townname": "大同鄉"
+  },
+  {
+    "cityid": "07",
+    "cityname": "宜蘭縣",
+    "townid": "065",
+    "townname": "礁溪鄉"
+  },
+  {
+    "cityid": "07",
+    "cityname": "宜蘭縣",
+    "townid": "086",
+    "townname": "羅東鎮"
+  },
+  {
+    "cityid": "07",
+    "cityname": "宜蘭縣",
+    "townid": "051",
+    "townname": "頭城鎮"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "155",
+    "townname": "二林鎮"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "177",
+    "townname": "二水鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "126",
+    "townname": "伸港鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "171",
+    "townname": "北斗鎮"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "156",
+    "townname": "員林市"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "158",
+    "townname": "埔心鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "151",
+    "townname": "埔鹽鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "165",
+    "townname": "埤頭鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "169",
+    "townname": "大城鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "174",
+    "townname": "溪州鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "157",
+    "townname": "溪湖鎮"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "170",
+    "townname": "田中鎮"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "167",
+    "townname": "田尾鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "163",
+    "townname": "社頭鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "145",
+    "townname": "福興鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "144",
+    "townname": "秀水鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "172",
+    "townname": "竹塘鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "133",
+    "townname": "線西鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "148",
+    "townname": "芬園鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "146",
+    "townname": "花壇鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "149",
+    "townname": "芳苑鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "140",
+    "townname": "鹿港鎮"
+  },
+  {
+    "cityid": "06",
+    "cityname": "新北市",
+    "townid": "057",
+    "townname": "三峽區"
+  },
+  {
+    "cityid": "06",
+    "cityname": "新北市",
+    "townid": "002",
+    "townname": "三芝區"
+  },
+  {
+    "cityid": "06",
+    "cityname": "新北市",
+    "townid": "025",
+    "townname": "三重區"
+  },
+  {
+    "cityid": "06",
+    "cityname": "新北市",
+    "townid": "048",
+    "townname": "中和區"
+  },
+  {
+    "cityid": "06",
+    "cityname": "新北市",
+    "townid": "017",
+    "townname": "五股區"
+  },
+  {
+    "cityid": "06",
+    "cityname": "新北市",
+    "townid": "009",
+    "townname": "八里區"
+  },
+  {
+    "cityid": "06",
+    "cityname": "新北市",
+    "townid": "049",
+    "townname": "土城區"
+  },
+  {
+    "cityid": "06",
+    "cityname": "新北市",
+    "townid": "053",
+    "townname": "坪林區"
+  },
+  {
+    "cityid": "06",
+    "cityname": "新北市",
+    "townid": "029",
+    "townname": "平溪區"
+  },
+  {
+    "cityid": "06",
+    "cityname": "新北市",
+    "townid": "050",
+    "townname": "新店區"
+  },
+  {
+    "cityid": "06",
+    "cityname": "新北市",
+    "townid": "033",
+    "townname": "新莊區"
+  },
+  {
+    "cityid": "06",
+    "cityname": "新北市",
+    "townid": "016",
+    "townname": "林口區"
+  },
+  {
+    "cityid": "06",
+    "cityname": "新北市",
+    "townid": "046",
+    "townname": "樹林區"
+  },
+  {
+    "cityid": "06",
+    "cityname": "新北市",
+    "townid": "045",
+    "townname": "永和區"
+  },
+  {
+    "cityid": "06",
+    "cityname": "新北市",
+    "townid": "014",
+    "townname": "汐止區"
+  },
+  {
+    "cityid": "06",
+    "cityname": "新北市",
+    "townid": "044",
+    "townname": "深坑區"
+  },
+  {
+    "cityid": "06",
+    "cityname": "新北市",
+    "townid": "061",
+    "townname": "烏來區"
+  },
+  {
+    "cityid": "06",
+    "cityname": "新北市",
+    "townid": "018",
+    "townname": "瑞芳區"
+  },
+  {
+    "cityid": "06",
+    "cityname": "新北市",
+    "townid": "040",
+    "townname": "石碇區"
+  },
+  {
+    "cityid": "06",
+    "cityname": "新北市",
+    "townid": "001",
+    "townname": "石門區"
+  },
+  {
+    "cityid": "06",
+    "cityname": "新北市",
+    "townid": "005",
+    "townname": "萬里區"
+  },
+  {
+    "cityid": "06",
+    "cityname": "新北市",
+    "townid": "023",
+    "townname": "蘆洲區"
+  },
+  {
+    "cityid": "06",
+    "cityname": "新北市",
+    "townid": "027",
+    "townname": "貢寮區"
+  },
+  {
+    "cityid": "06",
+    "cityname": "新北市",
+    "townid": "003",
+    "townname": "金山區"
+  },
+  {
+    "cityid": "06",
+    "cityname": "新北市",
+    "townid": "024",
+    "townname": "雙溪區"
+  },
+  {
+    "cityid": "06",
+    "cityname": "新北市",
+    "townid": "054",
+    "townname": "鶯歌區"
+  },
+  {
+    "cityid": "15",
+    "cityname": "新竹市",
+    "townid": "070",
+    "townname": "東區"
+  },
+  {
+    "cityid": "15",
+    "cityname": "新竹市",
+    "townid": "069",
+    "townname": "香山區"
+  }
+]

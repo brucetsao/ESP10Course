@@ -1,0 +1,12 @@
+{
+  "DataName": "Town",
+  "Amount": 1,
+  "Datalist": [
+    {
+      "CountyID": "13",
+      "CountyName": "南投縣"
+      "TownID": "122",
+      "TownName": "仁愛鄉"
+    }
+  ]
+}

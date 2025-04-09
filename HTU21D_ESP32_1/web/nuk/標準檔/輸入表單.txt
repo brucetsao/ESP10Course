@@ -1,0 +1,7 @@
+<form id="form1" name="form1" method="post" action="表單submit之後執行的程式">
+
+
+
+
+<input type="submit" value="Submit to me">
+</form>

@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>無標題文件</title>
+</head>
+
+<body>
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="42" align="centered">ID<br />
+      (編號)</td>
+    <td width="84" align="centered">User Account<br />
+      (帳號名稱)</td>
+    <td width="90" align="centered">User Name<br />
+      (使用者名稱)</td>
+    <td width="42" align="centered">Sex<br />
+      (性別)</td>
+    <td width="44" align="centered">Degree<br />
+      (學歷)</td>
+    <td width="261" align="centered">Operation<br />
+      (管理功能)</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>burce</td>
+    <td>曹永忠</td>
+    <td>男生</td>
+    <td>大學</td>
+    <td><a href="memberadd.php">新增</a> / <a href="memberedt.php">修改</a> / <a href="memberdel.php">刪除</a></td>
+  </tr>
+</table>
+</body>
+</html>

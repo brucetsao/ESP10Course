@@ -1,0 +1,320 @@
+[
+  {
+    "cityid": "11",
+    "cityname": "苗栗縣",
+    "townid": "088",
+    "townname": "三灣鄉"
+  },
+  {
+    "cityid": "11",
+    "cityname": "苗栗縣",
+    "townid": "106",
+    "townname": "三義鄉"
+  },
+  {
+    "cityid": "11",
+    "cityname": "苗栗縣",
+    "townid": "109",
+    "townname": "卓蘭鎮"
+  },
+  {
+    "cityid": "11",
+    "cityname": "苗栗縣",
+    "townid": "092",
+    "townname": "南庄鄉"
+  },
+  {
+    "cityid": "11",
+    "cityname": "苗栗縣",
+    "townid": "103",
+    "townname": "大湖鄉"
+  },
+  {
+    "cityid": "11",
+    "cityname": "苗栗縣",
+    "townid": "091",
+    "townname": "後龍鎮"
+  },
+  {
+    "cityid": "11",
+    "cityname": "苗栗縣",
+    "townid": "101",
+    "townname": "泰安鄉"
+  },
+  {
+    "cityid": "11",
+    "cityname": "苗栗縣",
+    "townid": "095",
+    "townname": "獅潭鄉"
+  },
+  {
+    "cityid": "11",
+    "cityname": "苗栗縣",
+    "townid": "079",
+    "townname": "竹南鎮"
+  },
+  {
+    "cityid": "11",
+    "cityname": "苗栗縣",
+    "townid": "102",
+    "townname": "苑裡鎮"
+  },
+  {
+    "cityid": "11",
+    "cityname": "苗栗縣",
+    "townid": "096",
+    "townname": "苗栗市"
+  },
+  {
+    "cityid": "11",
+    "cityname": "苗栗縣",
+    "townid": "097",
+    "townname": "西湖鄉"
+  },
+  {
+    "cityid": "11",
+    "cityname": "苗栗縣",
+    "townid": "098",
+    "townname": "通霄鎮"
+  },
+  {
+    "cityid": "11",
+    "cityname": "苗栗縣",
+    "townid": "090",
+    "townname": "造橋鄉"
+  },
+  {
+    "cityid": "11",
+    "cityname": "苗栗縣",
+    "townid": "100",
+    "townname": "銅鑼鄉"
+  },
+  {
+    "cityid": "11",
+    "cityname": "苗栗縣",
+    "townid": "094",
+    "townname": "頭屋鄉"
+  },
+  {
+    "cityid": "13",
+    "cityname": "南投縣",
+    "townid": "159",
+    "townname": "中寮鄉"
+  },
+  {
+    "cityid": "13",
+    "cityname": "南投縣",
+    "townid": "122",
+    "townname": "仁愛鄉"
+  },
+  {
+    "cityid": "13",
+    "cityname": "南投縣",
+    "townid": "175",
+    "townname": "信義鄉"
+  },
+  {
+    "cityid": "13",
+    "cityname": "南投縣",
+    "townid": "160",
+    "townname": "南投市"
+  },
+  {
+    "cityid": "13",
+    "cityname": "南投縣",
+    "townid": "173",
+    "townname": "名間鄉"
+  },
+  {
+    "cityid": "13",
+    "cityname": "南投縣",
+    "townid": "139",
+    "townname": "國姓鄉"
+  },
+  {
+    "cityid": "13",
+    "cityname": "南投縣",
+    "townid": "147",
+    "townname": "埔里鎮"
+  },
+  {
+    "cityid": "13",
+    "cityname": "南投縣",
+    "townid": "168",
+    "townname": "水里鄉"
+  },
+  {
+    "cityid": "13",
+    "cityname": "南投縣",
+    "townid": "178",
+    "townname": "竹山鎮"
+  },
+  {
+    "cityid": "13",
+    "cityname": "南投縣",
+    "townid": "152",
+    "townname": "草屯鎮"
+  },
+  {
+    "cityid": "13",
+    "cityname": "南投縣",
+    "townid": "176",
+    "townname": "集集鎮"
+  },
+  {
+    "cityid": "13",
+    "cityname": "南投縣",
+    "townid": "164",
+    "townname": "魚池鄉"
+  },
+  {
+    "cityid": "13",
+    "cityname": "南投縣",
+    "townid": "183",
+    "townname": "鹿谷鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "155",
+    "townname": "二林鎮"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "177",
+    "townname": "二水鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "126",
+    "townname": "伸港鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "171",
+    "townname": "北斗鎮"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "156",
+    "townname": "員林市"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "158",
+    "townname": "埔心鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "151",
+    "townname": "埔鹽鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "165",
+    "townname": "埤頭鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "169",
+    "townname": "大城鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "174",
+    "townname": "溪州鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "157",
+    "townname": "溪湖鎮"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "170",
+    "townname": "田中鎮"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "167",
+    "townname": "田尾鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "163",
+    "townname": "社頭鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "145",
+    "townname": "福興鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "144",
+    "townname": "秀水鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "172",
+    "townname": "竹塘鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "133",
+    "townname": "線西鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "148",
+    "townname": "芬園鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "146",
+    "townname": "花壇鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "149",
+    "townname": "芳苑鄉"
+  },
+  {
+    "cityid": "14",
+    "cityname": "彰化縣",
+    "townid": "140",
+    "townname": "鹿港鎮"
+  },
+  {
+    "cityid": "15",
+    "cityname": "新竹市",
+    "townid": "070",
+    "townname": "東區"
+  },
+  {
+    "cityid": "15",
+    "cityname": "新竹市",
+    "townid": "069",
+    "townname": "香山區"
+  }
+]
