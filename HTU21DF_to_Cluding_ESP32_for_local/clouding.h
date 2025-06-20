@@ -1,5 +1,6 @@
 //http://iot.arduino.org.tw:8888/bigdata/dhtdata/dhDatatadd.php?MAC=112233445566&T=65.1&H=76
-char iotserver[] = "iot.arduino.org.tw";    // 建國老師 的雲端服務器
+//http://192.168.50.137:8888/bigdata/dhtdata/dhDatatadd.php?MAC=112233445566&T=65.1&H=76
+char iotserver[] = "192.168.50.137";    // 建國老師 的雲端服務器
 int iotport = 8888 ;  //定義雲端伺服器的通訊埠號，這裡設為 8888，用於後續的網路連線。
 // Server URL: iot.arduino.org.tw 
 // Server Port: 8888
@@ -11,7 +12,7 @@ int iotport = 8888 ;  //定義雲端伺服器的通訊埠號，這裡設為 8888
 String strGet="GET /bigdata/dhtdata/dhDatatadd.php";
 //  DB Agent 的 HTTP GET 請求的開頭，指向雲端伺服器上的特定程式
 String strHttp=" HTTP/1.1";   // HTTP 協議的版本標頭，這裡是 HTTP/1.1，表示使用 HTTP 1.1 版本進行通訊。 
-String strHost="Host: iot.arduino.org.tw";  // 指定目標主機的域名，這裡是 iot.arduino.org.tw，這是 HTTP 請求頭的一部分。
+String strHost="Host: 192.168.50.137";  // 指定目標主機的域名，這裡是 iot.arduino.org.tw，這是 HTTP 請求頭的一部分。
  String connectstr ;    //一個空的字串變數，後續用來動態組成完整的 RESTful 請求參數。
 //http://iot.arduino.org.tw:8888/bigdata/dhtdata/dhDatatadd.php?MAC=112233445566&T=65.1&H=76
 // host is  ==>nuk.arduino.org.tw:8888
