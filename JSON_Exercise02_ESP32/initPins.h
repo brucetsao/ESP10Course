@@ -3,57 +3,18 @@
 #define initDelay   6000    //初始化延遲時間
 #define loopdelay 5000   //loop 延遲時間
 
+
+    String IPData ="127.0.0.1";   //網路卡取得IP位址之儲存變數
+    String APname ="NUKIOT";   //網路熱點之儲存變數
+    String MacData = "E89F6DE8F3BC" ;   //網路卡取得網路卡編號之儲存變數 
+
   
-  #include <WiFi.h>   //使用網路函式庫
-  #include <WiFiClient.h>   //使用網路用戶端函式庫
-  #include <WiFiMulti.h>    //多熱點網路函式庫
-  
-  WiFiMulti wifiMulti;    //產生多熱點連線物件
-  
-  
-  
-  String IpAddress2String(const IPAddress& ipAddress) ;
-  
-  
- 
-  
-    IPAddress ip ;    //網路卡取得IP位址之原始型態之儲存變數
-    String IPData ;   //網路卡取得IP位址之儲存變數
-    String APname ;   //網路熱點之儲存變數
-    String MacData ;   //網路卡取得網路卡編號之儲存變數 
-    long rssi ;   //網路連線之訊號強度'之儲存變數
-    int status = WL_IDLE_STATUS;  //取得網路狀態之變數
-  // randomSeed((unsigned long)millis());
   void initWiFi()   //網路連線，連上熱點
   {
-    //加入連線熱點資料
-    wifiMulti.addAP("NCNUIOT", "12345678");  //加入一組熱點
-    wifiMulti.addAP("NCNUIOT2", "12345678");  //加入一組熱點
-    wifiMulti.addAP("ABC", "12345678");  //加入一組熱點
-  
-    // We start by connecting to a WiFi network
-  
-    Serial.println();
-    Serial.println();
-    Serial.print("Connecting to ");
-    //通訊埠印出 "Connecting to "
-    wifiMulti.run();  //多網路熱點設定連線
-   while (WiFi.status() != WL_CONNECTED)     //還沒連線成功
-    {
-      // wifiMulti.run() 啟動多熱點連線物件，進行已經紀錄的熱點進行連線，
-      // 一個一個連線，連到成功為主，或者是全部連不上
-      // WL_CONNECTED 連接熱點成功
-      Serial.print(".");   //通訊埠印出
-      delay(500) ;  //停500 ms
-       wifiMulti.run();   //多網路熱點設定連線
-    }
       Serial.println("WiFi connected");   //通訊埠印出 WiFi connected
       Serial.print("AP Name: ");   //通訊埠印出 AP Name:
-      APname = WiFi.SSID();
       Serial.println(APname);   //通訊埠印出 WiFi.SSID()==>從熱點名稱
       Serial.print("IP address: ");   //通訊埠印出 IP address:
-      ip = WiFi.localIP();
-      IPData = IpAddress2String(ip) ;
       Serial.println(IPData);   //通訊埠印出 WiFi.localIP()==>從熱點取得IP位址
       //通訊埠印出連接熱點取得的IP位址
     
@@ -172,36 +133,11 @@ String  print2HEX(int number) {
 String GetMacAddress()    //取得網路卡編號
 {
   // the MAC address of your WiFi shield
-  String Tmp = "" ;
-  byte mac[6];
-  
-  // print your MAC address:
-  WiFi.macAddress(mac);
-  for (int i=0; i<6; i++)
-    {
-        Tmp.concat(print2HEX(mac[i])) ;
-    }
+  String Tmp = "AABBCCDDEEFF" ;
     Tmp.toUpperCase() ;
   return Tmp ;
 }
 
-void ShowMAC()  //於串列埠印出網路卡號碼
-{
-  
-  Serial.print("MAC Address:(");  //印出 "MAC Address:("
-  Serial.print(MacData) ;   //印出 MacData 變數內容
-  Serial.print(")\n");    //印出 ")\n"
-
-
-}
-String IpAddress2String(const IPAddress& ipAddress)
-{
-  //回傳ipAddress[0-3]的內容，以16進位回傳
-  return String(ipAddress[0]) + String(".") +\
-  String(ipAddress[1]) + String(".") +\
-  String(ipAddress[2]) + String(".") +\
-  String(ipAddress[3])  ; 
-}
 
 
 

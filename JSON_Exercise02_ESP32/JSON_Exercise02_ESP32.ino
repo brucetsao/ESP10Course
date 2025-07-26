@@ -4,11 +4,8 @@
 
 void setup() 
 {
-
     initALL() ; //系統硬體/軟體初始化
-
-   
-  
+ 
 }
 
 void loop() 
@@ -28,8 +25,4 @@ void initALL()  //系統硬體/軟體初始化
 {
     Serial.begin(9600);
     Serial.println("System Start");
-
-    MacData = GetMacAddress() ;   //取得網路卡編號
-    initWiFi() ;  //網路連線，連上熱點
-    ShowInternet();  //秀出網路連線資訊
 }

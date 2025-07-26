@@ -1,21 +1,25 @@
+/***************************************************
+  This is an example for the HTU21D-F Humidity & Temp Sensor
+
+  Designed specifically to work with the HTU21D-F sensor from Adafruit
+  ----> https://www.adafruit.com/products/1899
+
+  These displays use I2C to communicate, 2 pins are required to
+  interface
+ ****************************************************/
+
 
 #include <Wire.h>   //I2C 基礎通訊函式庫
-#include "Adafruit_HTU21DF.h"   // HTU21D 溫溼度感測器美國adafruit原廠函式庫
+#include "Adafruit_HTU21DF.h"   // HTU21D 溫溼度感測器函式庫
   
 // Connect Vin to 3-5VDC
 // Connect GND to ground
 // Connect SCL to I2C clock pin (A5 on UNO)
 // Connect SDA to I2C data pin (A4 on UNO)
-char tmpvalue[100] ;
+char tmpvalue[100] ;    //顯示OLED 文字暫存字元陣列 
+double Tvalue , Hvalue ;    //溫度儲存變數，濕度儲存變數
 Adafruit_HTU21DF htu = Adafruit_HTU21DF();  //產生HTU21D 溫溼度感測器運作物件
  //產生HTU21D 溫溼度感測器運作物件
-void initHTU21D();   //啟動HTU21D 溫溼度感測器
-float ReadTemperature() ;//讀取HTU21D 溫溼度感測器之溫度
-float ReadHumidity() ; //讀取HTU21D 溫溼度感測器之溼度
-void printTemperatureonOled(float t) ; //讀取HTU21D 溫溼度感測器之溫度
-void printHumidityonOled(float h) ;//讀取HTU21D 溫溼度感測器之溫度
-
-// ------------------
 void initHTU21D()   //啟動HTU21D 溫溼度感測器
 {
     if (!htu.begin())   //如果 HTU21D 溫溼度感測器沒有啟動成功
@@ -37,8 +41,8 @@ float ReadHumidity() //讀取HTU21D 溫溼度感測器之溼度
 
 void printTemperatureonOled(float t) //讀取HTU21D 溫溼度感測器之溫度
 {
-      sprintf(tmpvalue,"%5.1f",t) ;   //格式化列印
-      Serial.print("Data on OLED:");
+      sprintf(tmpvalue,"%5.1f",t) ;
+      Serial.print("Data:");
       Serial.print(tmpvalue);
       Serial.print("\n");
       
@@ -51,7 +55,7 @@ void printHumidityonOled(float h) //讀取HTU21D 溫溼度感測器之溫度
 {
   
       sprintf(tmpvalue,"%5.1f",h) ;
-      Serial.print("Data on OLED:");
+      Serial.print("Data:");
       Serial.print(tmpvalue);
       Serial.print("\n");
       
